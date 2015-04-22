@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Familienduell</title>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui-1.10.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<script type="text/javascript">
+		var ip = null;
+		$(document).ready(function() {
+			if(typeof(Storage) !== "undefined") {
+			    if(localStorage.getItem("ip") == null) {
+			    	$("#ip").val("127.0.0.1");
+			    } else {
+			    	$("#ip").val(localStorage.getItem("ip"));
+			    }
+			} else {
+			    alert("Bitte einen neueren Browser verwenden!")
+			}
+
+			$("#startButton").click(function() {
+				localStorage.setItem("ip", $("#ip").val());
+				window.location.href = "duell.html";
+				$("#not").show();
+			});
+		});
+	</script>
+</head>
+<body>
+<div id="startDiv" style="width: 500px; margin: auto;">
+			<h1 style="font-size: 5em;">Familien Duell</h1>
+			Server IP-Adresse: <input id="ip" type="text"> <button id="startButton">Start</button>
+			<div style="display:none" id="not">
+				<a href="duell.html">Falls die Weiterleitung nicht funktioniert, bitte hier klicken!</a>
+			</div>
+</div>
+</body>
+</html>

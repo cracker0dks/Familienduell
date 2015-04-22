@@ -1,0 +1,31 @@
+.textColor  {
+    color:#aeb130;
+    font-weight:bold;
+    font-size: 1.5em;
+}
+
+.bgColor{
+    background:#525463;
+}
+
+.antwortInp, .questionIn, .questionKIn {
+	width:400px;
+}
+
+.upDownArrow:hover {
+	color:blue;
+	cursor:pointer;
+}
+
+.markOnHover:hover{
+	color:blue;
+	cursor:pointer;
+}
+
+.markOnHover{
+	color:gray;
+}
+
+.noIntro {
+	display:none;
+}
