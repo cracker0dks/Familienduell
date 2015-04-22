@@ -1,7 +1,7 @@
 # Familienduell
 Familienduell Client / Server (NodeJs Javascript)
 
-1. START DES SERVERS!
+### START DES SERVERS!
 
 1.1 Im Ordner "server" die Datei "server.js" mit der "node.exe" starten. (dazu einfach die server.js per drag&drop auf die node.exe ziehen).
 
@@ -9,7 +9,7 @@ Familienduell Client / Server (NodeJs Javascript)
 
 1.3 Falls die Firewall fragt, solltest du die Anfrage zulassen da sonst der client nicht verbinden kann.
 
-2. START DES CONTROLLERS!
+### START DES CONTROLLERS!
 
 2.1 in den Ordner "web" wechseln und die datei "index.html" mit dem Browser (Chrome) öffnen! (Dieses Programm wurde für Chrome entwickelt und sonst nicht getestet.)
 
@@ -19,22 +19,25 @@ Familienduell Client / Server (NodeJs Javascript)
 
 2.4 Auf den Controller Button klicken.
 
-3. Start des Displays
+### Start des Displays
 
-Alle Schirtte aus Punkt 2 in einem neuen Browserfenster ausführen. Bei 2.4 auf display klicken.
+Alle Schirtte aus "START DES CONTROLLERS!" in einem neuen Browserfenster ausführen. Bei 2.4 auf display klicken.
 
 
 ---------------------------
 
-FAQs:
+### FAQs:
 Q: Warum ist das Display zu Beginn schwarz, und wie kann ich das ändern?
+
 A: Das Bild ist schwarz damit man die Intromusik starten kann und die Leute (Zuschauer) nicht schon vorher wissen was auf sie zukommt.
    Dies kann über die Checkbox "Blackscreen", im Bereich "Intro" kontrolliert werden.
 
 Q: Ich kann keine Fragen editieren, was ist da los?
+
 A: Diese Anwendung wurde für den Browser Google Chrome entwickelt. Warscheinlich verwendest du Firefox.
 
 Q: Wie funktioniert das mit 2 Rechnern?
+
 A: Step by Step: 
 	PC1 = controller und Server
 	PC2= display
