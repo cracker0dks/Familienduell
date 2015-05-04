@@ -133,15 +133,22 @@ var connectWs = function() {
 		} else if(key == "stopJeopardy") {
 			stopJeopardy();
 		} else if(key == "setJeopardyVolume") {
+			jeopardyVolume = value;
 			if(jeopardy != null)
-				jeopardy.volume = value;
+				jeopardy.volume = jeopardyVolume;
+		} else if(key == "startSchweinchen") {
+			startSchweinchen();
+		} else if(key == "stopSchweinchen") {
+			stopSchweinchen();
+		} else if(key == "setSchweinchenVolume") {
+			schweinchenVolume = value;
+			if(schweinchen != null)
+				schweinchen.volume = schweinchenVolume;
 		} else if(key == "toggleBlackScreen") {
 			if(display) {
 				$("#blackScreen").toggle();
 			}
 		}
-
-		
 	}
 }
 

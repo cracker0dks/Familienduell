@@ -1,6 +1,9 @@
 ﻿var fragen = null;
 var intro = null;
 var jeopardy = null;
+var schweinchenVolume = 1;
+var jeopardyVolume = 1;
+var schweinchen = null;
 
 $(document).ready(function() {
 
@@ -36,6 +39,21 @@ $(document).ready(function() {
      $("#jeopardyVolume").on("input", function() {
 		var v = parseFloat($(this).val()) / 10;
 		wsSend("setJeopardyVolume", v);	
+	});
+
+     $("#startScheinchenbtn").click(function() {
+    	$("#startScheinchenbtn").attr("disabled", "disabled");
+    	wsSend("startSchweinchen", "");
+    });
+
+     $("#stopScheinchenbtn").click(function() {
+     	$("#startScheinchenbtn").removeAttr("disabled");
+     	wsSend("stopSchweinchen", "");
+    });
+
+     $("#schweinchenVolume").on("input", function() {
+		var v = parseFloat($(this).val()) / 10;
+		wsSend("setSchweinchenVolume", v);	
 	});
 
 	$("#addNewQuestionBtn").click(function() {
@@ -136,6 +154,7 @@ function setRightPoints(newPoints) {
 function startJeopardy() {
 	if(sounds && (display || serverSound)) {
 		jeopardy = new Audio('./sounds/jeopardy.mp3');
+		jeopardy.volume = jeopardyVolume;
 		jeopardy.play();
 	}
 }
@@ -143,6 +162,28 @@ function startJeopardy() {
 function stopJeopardy() {
 	if(jeopardy) {
 		jeopardy.pause();
+	}
+}
+
+function startSchweinchen() {
+	$("#schweinchenImg").show();
+	$("#answers").hide();
+	if(sounds && (display || serverSound)) {
+		schweinchen = new Audio('./sounds/schweinchen.wav');
+		schweinchen.volume = schweinchenVolume;
+		schweinchen.play();
+	}
+}
+
+function stopSchweinchen() {
+	var index = $("#questionsSelcet>option:selected").index();
+	$("#questionsSelcet").val(index+1);
+	changeFrage();
+	
+	$("#schweinchenImg").hide();
+	$("#answers").show();
+	if(schweinchen) {
+		schweinchen.pause();
 	}
 }
 
@@ -166,7 +207,7 @@ function showIntro() {
 function fillFragenSelect() {
 	$("#questionsSelcet").empty();
 	for(var i=0;i<fragen.length;i++) {
-		$("#questionsSelcet").append('<option>'+fragen[i]["kuerzel"]+'</option>');
+		$("#questionsSelcet").append('<option value="'+i+'">'+fragen[i]["kuerzel"]+'</option>');
 	}
 }
 
@@ -188,6 +229,7 @@ function changeFrage() {
 }
 
 function loadQuestionToGui(index) {
+	$("#schweinchenImg").hide();
 	$("#answers").empty();
 	if(index > -1) {
 		$("#frageDiv").text("Frage: "+fragen[index]["frage"]);
