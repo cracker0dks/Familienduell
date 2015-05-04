@@ -1,5 +1,6 @@
 ﻿var fragen = null;
 var intro = null;
+var introVolume = 1;
 var jeopardy = null;
 var schweinchenVolume = 1;
 var jeopardyVolume = 1;
@@ -179,7 +180,7 @@ function stopSchweinchen() {
 	var index = $("#questionsSelcet>option:selected").index();
 	$("#questionsSelcet").val(index+1);
 	changeFrage();
-	
+
 	$("#schweinchenImg").hide();
 	$("#answers").show();
 	if(schweinchen) {
@@ -200,6 +201,7 @@ function showIntro() {
 	$(".intro").show();
 	if(sounds && (display || serverSound)) {
 		intro = new Audio('./sounds/intro.mp3');
+		intro.volume = introVolume;
 		intro.play();
 	}
 }

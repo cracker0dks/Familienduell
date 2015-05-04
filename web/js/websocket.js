@@ -122,8 +122,9 @@ var connectWs = function() {
 		} else if(key == "hideIntro") {
 			hideIntro();
 		} else if(key == "setIntroVolume") {
+			introVolume = value;
 			if(intro != null)
-				intro.volume = value;
+				intro.volume = introVolume;
 		} else if(key == "setLeftPoints") {
 			setLeftPoints(value);
 		} else if(key == "setRightPoints") {
