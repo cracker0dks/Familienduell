@@ -3,7 +3,7 @@ Familienduell Client / Server (NodeJs Javascript)
 
 ### START DES SERVERS!
 
-1.1 Im Ordner "server" die Datei "server.js" mit der "node.exe" starten. (dazu einfach die server.js per drag&drop auf die node.exe ziehen).
+1.1 Im Ordner "server" die Datei StartServer.bat doppelklicken.
 
 1.2 Im Fenster das jetzt erscheint sollte: "Websocket Server running at ws://127.0.0.1:8080" stehen.
 
@@ -44,10 +44,10 @@ A: Step by Step:
 
     1. PC 1 muss im gleichen Netztwerk  (Wlan / LAN) sein wie PC 2.
     2. Kopiere alle Dateien auf beide PCs
-    3. Dann startest du den Server auf PC1
+    3. starte den Server auf PC1
     4. Starte den controller auf PC1 (So wie sonst auch immer mit IP: 127.0.0.1)
     5. Nun musst du die LAN IP-Adresse von PC1 herrausfinden. Anleitung hier: http://www.tippscout.de/windows-xp-ip-adresse-des-computers-ermitteln-und-herausfinden_tipp_2676.html
-    6. Nun startest du das Display auf pc2 trägst aber statt "127.0.0.1" die IP-Adresse von pc1 ein (Die Adresse sollte mit "192.168." beginnen)
+    6. Nun startest du das Display auf pc2 trägst aber statt "127.0.0.1" die IP-Adresse von pc1 ein (Die Adresse sollte normalerweise mit "192.168." beginnen)
     7. Los gehts :)
 
 ---------------------------
