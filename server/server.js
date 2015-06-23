@@ -16,6 +16,7 @@ wss.on('connection', function(ws) {
 	
 	console.log("~~~~~~~~ WELCOME TO SERVER ~~~~~~ s:"+subscribers.length);
     ws.on('message', function(message) {
+    	console.log('msg: ' + message);
     	var parts = message.split("###");
     	if(parts[0] != "fileOp") {
 	    	broadcastMessage(getClientId(), message);
@@ -38,7 +39,6 @@ wss.on('connection', function(ws) {
 	    		});
 	    	}	    		
 	    }
-		console.log('msg: ' + message);
     });
 
 	ws.on("close", function() {
@@ -57,7 +57,7 @@ wss.on('connection', function(ws) {
 });
 
 function broadcastMessage(clientId, msg) {
-	//console.log("broadcast:"+msg+" length:"+subscribers.length);
+	console.log("broadcast:"+msg.split("###")[0]+" length:"+subscribers.length);
 	for(var i=0;i<subscribers.length;i++) {
 		if(subscribers[i] != null)
 			subscribers[i].send(msg);
@@ -66,13 +66,10 @@ function broadcastMessage(clientId, msg) {
 
 console.log("Websocket Server running at ws://127.0.0.1:"+wsPort);
 
-//Show NODEJS errors
-process.on('uncaughtException', function (err) {
-  console.log('Caught exception: ' + err);
-});
-
 function writeInFile(filename, content, callback) {
+	console.log("going to read file:"+filename);
 	fs.writeFile(filename, content, function(err) {
+		console.log("file:"+filname+" write callback done!");
 	    if(err) {
 	    	console.log(err);
 	    	callback("error");
@@ -84,7 +81,9 @@ function writeInFile(filename, content, callback) {
 }
 
 function readFile(filname, callback) {
+	console.log("going to read file:"+filname);
 	fs.readFile(filname, 'utf8', function (err,data) {
+		console.log("file:"+filname+" read callback done!");
 		if (err) {
 			console.log(err);
 			callback("error");
