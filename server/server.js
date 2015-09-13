@@ -69,7 +69,7 @@ console.log("Websocket Server running at ws://127.0.0.1:"+wsPort);
 function writeInFile(filename, content, callback) {
 	console.log("going to read file:"+filename);
 	fs.writeFile(filename, content, function(err) {
-		console.log("file:"+filname+" write callback done!");
+		console.log("file:"+filename+" write callback done!");
 	    if(err) {
 	    	console.log(err);
 	    	callback("error");
@@ -80,10 +80,10 @@ function writeInFile(filename, content, callback) {
 	}); 
 }
 
-function readFile(filname, callback) {
-	console.log("going to read file:"+filname);
-	fs.readFile(filname, 'utf8', function (err,data) {
-		console.log("file:"+filname+" read callback done!");
+function readFile(filename, callback) {
+	console.log("going to read file:"+filename);
+	fs.readFile(filename, 'utf8', function (err,data) {
+		console.log("file:"+filename+" read callback done!");
 		if (err) {
 			console.log(err);
 			callback("error");
