@@ -77,11 +77,11 @@ A: Ja, dafür müssen jedoch zunächst die etsprechenden Abhänigkeiten installi
 
 Q: In der letzten Version waren die Fragen in der Fragen.txt noch im Klartext gespeichert, was ist passiert?
 
-A: Das war nötig, da Linux mit Umlauten nicht umgehen kann. Die Fragen werden deshalb in Base64 encoded abgelegt.
+A: Da Linux mit Umlauten nicht umgehen kann werden die Fragen Base64 encoded abgelegt.
 
 Q:  Wie kann ich meine Alten Fragen (Klartext) in das neue System (Base64) übertragen?
 
-A: Wandle den Inhalt deiner fragen.txt in base64 dies geht einfach online:  https://www.base64encode.org/ . Überschreibe anschließend deine Fragen.txt mit dem neuen Inhalt.
+A: Wandle den Inhalt deiner fragen.txt in Base64. Dies geht einfach online:  https://www.base64encode.org/ . Überschreibe anschließend deine Fragen.txt mit dem neuen Inhalt. Fetig.
 ---------------------------
 
 Fragen an: rofl256@googlemail.com
