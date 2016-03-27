@@ -25,10 +25,10 @@ ___Linux mit Python___
 1.4 Ins Serververzeichnis wecheseln
 `cd Familienduell/Server`
 
-1.4 Starte den Server
+1.5 Starte den Server
 `python3 server.py`
 
-1.5 In der Console erscheint: "info>starting server 0.0.0.0:8080"
+1.6 In der Console erscheint: "info>starting server 0.0.0.0:8080"
 
 ### START DES CONTROLLERS!
 
