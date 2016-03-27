@@ -70,7 +70,18 @@ A: Step by Step:
     5. Nun musst du die LAN IP-Adresse von PC1 herrausfinden. Anleitung hier: http://www.tippscout.de/windows-xp-ip-adresse-des-computers-ermitteln-und-herausfinden_tipp_2676.html
     6. Nun startest du das Display auf pc2 trägst aber statt "127.0.0.1" die IP-Adresse von pc1 ein (Die Adresse sollte mit "192.168." beginnen)
     7. Los gehts :)
+    
+Q: Läuft der Server mit nodeJs auch unter Linux / Läuft der Python Server auch unter Windows?
 
+A: Ja, dafür müssen jedoch zunächst die etsprechenden Abhänigkeiten installiert werden.
+
+Q: In der letzten Version waren die Fragen in der Fragen.txt noch im Klartext gespeichert, was ist passiert?
+
+A: Das war nötig, da Linux mit Umlauten nicht umgehen kann. Die Fragen werden deshalb in Base64 encoded abgelegt.
+
+Q:  Wie kann ich meine Alten Fragen (Klartext) in das neue System (Base64) übertragen?
+
+A: Wandle den Inhalt deiner fragen.txt in base64 dies geht einfach online:  https://www.base64encode.org/ . Überschreibe anschließend deine Fragen.txt mit dem neuen Inhalt.
 ---------------------------
 
 Fragen an: rofl256@googlemail.com
