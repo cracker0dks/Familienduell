@@ -90,4 +90,4 @@ Fragen an: rofl256@googlemail.com
 Programmierung: cracker aka rofl256
 Unterstützt durch: DiggerTigger, Anni & Naseile
 
-Danke an: (flbe)[https://github.com/flbe] für den Python Server
+Danke an: [flbe](https://github.com/flbe) für den Python Server
