@@ -30,7 +30,7 @@ Alle Schirtte aus "START DES CONTROLLERS!" in einem neuen Browserfenster ausfüh
 Q: Warum ist das Display zu Beginn schwarz, und wie kann ich das ändern?
 
 A: Das Bild ist schwarz damit man die Intromusik starten kann und die Leute (Zuschauer) nicht schon vorher wissen was auf sie zukommt.
-   Dies kann über die Checkbox "Blackscreen", im Bereich "Intro" kontrolliert werden.
+   Dies kann (Im Controller) über die Checkbox "Blackscreen", im Bereich "Intro" kontrolliert werden.
 
 Q: Ich kann keine Fragen editieren, was ist da los?
 
@@ -40,14 +40,14 @@ Q: Wie funktioniert das mit 2 Rechnern?
 
 A: Step by Step: 
 	PC1 = controller und Server
-	PC2= display
+	PC2 = display
 
     1. PC 1 muss im gleichen Netztwerk  (Wlan / LAN) sein wie PC 2.
     2. Kopiere alle Dateien auf beide PCs
     3. starte den Server auf PC1
     4. Starte den controller auf PC1 (So wie sonst auch immer mit IP: 127.0.0.1)
     5. Nun musst du die LAN IP-Adresse von PC1 herrausfinden. Anleitung hier: http://www.tippscout.de/windows-xp-ip-adresse-des-computers-ermitteln-und-herausfinden_tipp_2676.html
-    6. Nun startest du das Display auf pc2 trägst aber statt "127.0.0.1" die IP-Adresse von pc1 ein (Die Adresse sollte normalerweise mit "192.168." beginnen)
+    6. Nun startest du das Display auf pc2 trägst aber statt "127.0.0.1" die IP-Adresse von pc1 ein (Die Adresse sollte mit "192.168." beginnen)
     7. Los gehts :)
 
 ---------------------------
