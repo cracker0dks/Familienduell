@@ -82,9 +82,11 @@ A: Da Linux mit Umlauten nicht umgehen kann werden die Fragen Base64 encoded abg
 Q:  Wie kann ich meine Alten Fragen (Klartext) in das neue System (Base64) übertragen?
 
 A: Wandle den Inhalt deiner fragen.txt in Base64. Dies geht einfach online:  https://www.base64encode.org/ . Überschreibe anschließend deine Fragen.txt mit dem neuen Inhalt. Fetig.
+
 ---------------------------
 
 Fragen an: rofl256@googlemail.com
 
 Programmierung: cracker aka rofl256
 Unterstützt durch: DiggerTigger, Anni & Naseile
+Danke an: https://github.com/flbe für den Python Server
