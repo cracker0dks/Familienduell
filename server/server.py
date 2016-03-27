@@ -6,7 +6,7 @@ import websockets
 import pprint
 
 #server config <change ip if you like>
-ip = "127.0.0.1"
+ip = "0.0.0.0"
 port = 8080
 
 #global vars
@@ -48,18 +48,21 @@ def client_connect(websocket, path):
 					print("info>fileop> got read")
 					print("info>fileop>read:" + command[2])
 
-					f = open(command[2], "r")
-					content = f.read()
-					f.close()
+					try:
+						f = open(command[2], "r", encoding='utf8')
+						content = f.read()
+						f.close()
 
-					print("reading done")
+						print("reading done")
+					except:
+						print("Error reading file:"+ command[2])
 
 					#send content
 					#yield from sendMsg(websocket, "file###" + command[2] + "###" + content)
 					yield from broadcast("file###" + command[2] + "###" + content);
 
 				elif command[1] == "write":
-					f = open(command[2], "w")
+					f = open(command[2], "w", encoding='utf8')
 					f.write(command[3])
 					f.close()
 
