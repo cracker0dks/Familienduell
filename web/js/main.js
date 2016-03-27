@@ -234,7 +234,7 @@ function loadQuestionToGui(index) {
 	$("#schweinchenImg").hide();
 	$("#answers").empty();
 	if(index > -1) {
-		$("#frageDiv").text("Frage: "+fragen[index]["frage"]);
+		$("#frageDiv").html("Frage: "+fragen[index]["frage"]);
 		for(var i=0;i<fragen[index]["antworten"].length;i++) {
 			if(fragen[index]["antworten"][i]["antwort"] != "") {
 				var oneLine = $('<div style="height:55px">'+
@@ -328,20 +328,41 @@ function saveQuestions() {
 	var objToSave = [];
 	$.each($("#fragenListe").find("li"), function() {
 		var oneQ = {
-			"frage" : $(this).find(".questionIn").val(),
-			"kuerzel" : $(this).find(".questionKIn").val(),
+			"frage" : replaceSomeCharactersInHtml($(this).find(".questionIn").val()),
+			"kuerzel" : replaceSomeCharactersInHtml($(this).find(".questionKIn").val()),
 			"antworten" : []
 		};
 		$.each($(this).find(".antTr"),function() {
 			oneQ["antworten"].push({
-				"antwort" : $(this).find(".antwortInp").val(),
-				"anz" : $(this).find(".anz").val()
+				"antwort" : replaceSomeCharactersInHtml($(this).find(".antwortInp").val()),
+				"anz" : replaceSomeCharactersInHtml($(this).find(".anz").val())
 			});
 		});
 		objToSave.push(oneQ);
 	});
 	var jsonQues = JSON.stringify(objToSave);
+	jsonQues = btoa(jsonQues);
 	wsSend("fileOp","write###fragen.txt###"+jsonQues);
+}
+
+function replaceSomeCharactersInHtml(str) {
+	str = str.replace(/Ü/g, "&Uuml;");
+	str = str.replace(/ü/g, "&uuml;");
+	str = str.replace(/Ö/g, "&Ouml;");
+	str = str.replace(/ö/g, "&ouml;");
+	str = str.replace(/Ä/g, "&Auml;");
+	str = str.replace(/ä/g, "&auml;");
+	return str;
+}
+
+function replaceSomeCharactersInStd(str) {
+	str = str.replace(/&Uuml;/g, "Ü");
+	str = str.replace(/&uuml;/g, "ü");
+	str = str.replace(/&Ouml;/g, "Ö");
+	str = str.replace(/&ouml;/g, "ö");
+	str = str.replace(/&Auml;/g, "Ä");
+	str = str.replace(/&auml;/g, "ä");
+	return str;
 }
 
 function addNewQuestion(frage) {
@@ -365,11 +386,11 @@ function addNewQuestion(frage) {
 		'</tr><tr>'+
 	'</table></li>');
 	if(frage != null) {
-		newQHtml.find(".questionIn").val(frage["frage"]);
-		newQHtml.find(".questionKIn").val(frage["kuerzel"]);
+		newQHtml.find(".questionIn").val(replaceSomeCharactersInStd(frage["frage"]));
+		newQHtml.find(".questionKIn").val(replaceSomeCharactersInStd(frage["kuerzel"]));
 		for(var i=0;i<frage["antworten"].length;i++) {
-			$(newQHtml.find(".antwortInp")[i]).val(frage["antworten"][i]["antwort"]);
-			$(newQHtml.find(".anz")[i]).val(frage["antworten"][i]["anz"]);
+			$(newQHtml.find(".antwortInp")[i]).val(replaceSomeCharactersInStd(frage["antworten"][i]["antwort"]));
+			$(newQHtml.find(".anz")[i]).val(replaceSomeCharactersInStd(frage["antworten"][i]["anz"]));
 		}
 	}
 	newQHtml.find(".trash").click(function() {
