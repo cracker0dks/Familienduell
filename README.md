@@ -15,14 +15,19 @@ ___Linux mit Python___
 
 1.1 Installiere Pyton3 mit pip und git
 `sudo apt-get install python3 python3-pip git -y`
+
 1.2 Installiere Websockets für Python3
 `pip3 install asyncio websockets`
+
 1.3 Servercode downloaden
 `git clone https://github.com/cracker0dks/Familienduell.git`
+
 1.4 Ins Serververzeichnis wecheseln
 `cd Familienduell/Server`
+
 1.4 Starte den Server
 `python3 server.py`
+
 1.5 In der Console erscheint: "info>starting server 0.0.0.0:8080"
 
 ### START DES CONTROLLERS!
