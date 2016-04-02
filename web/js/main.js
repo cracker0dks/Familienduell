@@ -214,7 +214,6 @@ function fillFragenSelect() {
 }
 
 function setFrageIndex(index) {
-	console.log("setFrage", index);
 	if(index >= 0 && index < $("#questionsSelcet").find("option").length) {
 		$("#questionsSelcet").find("option").removeAttr("selected");
 		$($("#questionsSelcet").find("option")[index]).prop("selected", "true");
@@ -227,7 +226,6 @@ function setFrageIndex(index) {
 
 function changeFrage() {
 	var index = $("#questionsSelcet>option:selected").index();
-	console.log("changeFrage", index);
 	wsSend("loadQuestion", index);
 	wsSend("clearAllFailsBtn", "");
 }
