@@ -214,18 +214,20 @@ function fillFragenSelect() {
 }
 
 function setFrageIndex(index) {
-	if(index > -1 && index < $("#questionsSelcet").find("option").length) {
+	console.log("setFrage", index);
+	if(index >= 0 && index < $("#questionsSelcet").find("option").length) {
 		$("#questionsSelcet").find("option").removeAttr("selected");
-		$($("#questionsSelcet").find("option")[index]).attr("selected", "true");
+		$($("#questionsSelcet").find("option")[index]).prop("selected", "true");
 	}
 	if($("#questionsSelcet>option:selected").index() == -1 && $("#questionsSelcet").find("option")[0] )
-		$($("#questionsSelcet").find("option")[0]).attr("selected", "true");
+		$($("#questionsSelcet").find("option")[0]).prop("selected", "true");
 
 	changeFrage();
 }
 
 function changeFrage() {
 	var index = $("#questionsSelcet>option:selected").index();
+	console.log("changeFrage", index);
 	wsSend("loadQuestion", index);
 	wsSend("clearAllFailsBtn", "");
 }
