@@ -30,6 +30,20 @@ ___Linux mit Python___
 
 1.6 In der Console erscheint: "info>starting server 0.0.0.0:8080"
 
+___Mac mit NodeJs___
+
+1.1 Installiere NodeJs und npm (https://nodejs.org/en/download/)
+
+1.2 starte die (mac) konsole und wechsle in den Serverordner
+
+1.3 installiere das Websocketmodul (ws)
+`npm install ws`
+
+1.4 Starte den Server
+`node server.js`
+
+1.5 In der Console erscheint: "Websocket Server running at ws://127.0.0.1:8080"
+
 ### START DES CONTROLLERS!
 
 2.1 in den Ordner "web" wechseln und die datei "index.html" mit dem Browser (Chrome) öffnen! (Dieses Programm wurde für Chrome entwickelt und sonst nicht getestet.)
