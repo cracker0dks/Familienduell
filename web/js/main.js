@@ -108,11 +108,13 @@ $(document).ready(function() {
 	$("#pointsToTheLeft").click(function() {
 		var points = parseFloat($(".pointsLeft").text()) + parseFloat($("#SumRes").text());
 		wsSend("setLeftPoints", points);
+		$("#SumRes").text("0");
 	});
 
 	$("#pointsToTheRight").click(function() {
 		var points = parseFloat($(".pointsRight").text()) + parseFloat($("#SumRes").text());
 		wsSend("setRightPoints", points);
+		$("#SumRes").text("0");
 	});
 
 	$("#newLeftPoints").click(function() {
@@ -263,7 +265,8 @@ function loadQuestionToGui(index) {
 	    	}
 		}
 	}
-	recalcSum();
+	$("#SumRes").text("0");
+	recalcSum(0);
 }
 
 function setAnswer(index, answer) {
@@ -287,18 +290,11 @@ function setAnz(index, nr) {
 		audio = new Audio('./sounds/zahlRichtig.mp3');
 		audio.play();
 	}
-	recalcSum();
+	recalcSum(nr);
 }
 
-function recalcSum() {
-	var summe = 0;
-	$.each($(".points"), function() {
-		var val = $(this).text();
-		if(val != "--" && val != "" && $(this).find("span").length < 1) {
-			summe+=parseInt(val);
-		}
-	});
-	$("#SumRes").text(summe);
+function recalcSum(s) {
+	$("#SumRes").text(parseFloat($("#SumRes").text())+parseFloat(s));
 }
 
 function getAnswerString(str) {
