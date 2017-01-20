@@ -171,6 +171,8 @@ function stopJeopardy() {
 function startSchweinchen() {
 	$("#schweinchenImg").show();
 	$("#answers").hide();
+	$("#displayQuestions").hide();
+	
 	if(sounds && (display || serverSound)) {
 		schweinchen = new Audio('./sounds/schweinchen.wav');
 		schweinchen.volume = schweinchenVolume;
@@ -185,6 +187,7 @@ function stopSchweinchen() {
 
 	$("#schweinchenImg").hide();
 	$("#answers").show();
+	$("#displayQuestions").show();
 	if(schweinchen) {
 		schweinchen.pause();
 	}
