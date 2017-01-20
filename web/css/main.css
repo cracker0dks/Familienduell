@@ -45,3 +45,9 @@
 	padding-left: 18px; 
 	font-size: 1.5em;
 }
+
+#displayQuestions {
+	position:absolute; 
+	top:15px; 
+	left:15px;
+}
