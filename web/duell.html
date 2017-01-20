@@ -22,30 +22,29 @@
 			<button id="controllerBtn" style="font-size: 2em; width:500px; margin-top:2px;"><i class="fa fa-keyboard-o"></i> CONTROLLER</button>
 			<hr id="DHR" style="margin:0px; width:100%; position:relative; top:3px; border-top:1px solid black;">
 	    </div>
-	    <div class="bgColor textColor" style="display:none; position:relative; width: 1000px; height:500px; margin: auto;" id="display">
+	    <div class="bgColor textColor mainHight" style="display:none; position:relative; width: 1000px; margin: auto;" id="display">
 	    	<img id="schweinchenImg" style="margin-left: 200px; margin-top: 70px;" src="./img/schweinchen.jpg">
-	    	<div id="answers" style="font-family: monospace; padding-top: 10px; padding-left: 18px; font-size: 1.5em;">
+	    	<div id="displayQuestions" style="position:absolute; top:15px; left:15px;" class="textColor">
+	    	</div>
+	    	<div id="answers" style="font-family: monospace; padding-top: 70px; padding-left: 18px; font-size: 1.5em;">
 	    		
 	    	</div>
-	    	<div class="noIntro" id="result" style="position:absolute; bottom:80px; right:45px; font-size: 1.5em;">
+	    	<div class="noIntro" id="result" style="position:absolute; bottom:115px; right:38px; font-size: 1.5em;">
 	    		<div style="float:left; padding-right: 20px;">SUMME</div>
 	    		<div style="float:left; font-size: 0.8em; position: relative; top: 12; left:14px; color: red; cursor:pointer;" class="controller" id="pointsToTheLeft"><i class="fa fa-chevron-left"></i></div>
 	    		<div class="noIntro" style="width:50px; float: left; text-align:right;" id="SumRes">0</div>
 	    		<div style="float:left; font-size: 0.8em; position: relative; top: 12; color: red; cursor:pointer;" class="controller" id="pointsToTheRight"><i class="fa fa-chevron-right"></i></div>
 	    	</div>
-	    	<div class="noIntro" id="footer1" style="position:absolute; bottom:0px; background:#aeb130; width:100%; height:50px; color:rgb(100, 100, 100); font-size: 2em;">
+	    	<div class="noIntro footer" id="footer1" style="position:absolute; bottom:50px; width:100%; height:50px; font-size: 2em;">
 	    		<div style="position:absolute; left:5px; top: -5px;" class="pointsLeft">0</div>
 	    		<div style="position:absolute; right:5px; top: -5px;" class="pointsRight">0</div>
 	    	</div>
-	    	<div class="noIntro" id="footer2" style="position:absolute; bottom:58px; background:#aeb130; width:100%; height:5px;"></div>
-	    	<div class="xmarker noIntro" style="position: absolute; bottom: -50px; left: 34; font-size: 2em; background: #525463; height: 50px; padding-left: 12px; padding-right: 12px; color: rgb(127, 115, 115);" ></div>
-	    	<div class="xmarker noIntro" style="position: absolute; bottom: -50px; right: 34; font-size: 2em; background: #525463; height: 50px; padding-left: 12px; padding-right: 12px; color: rgb(127, 115, 115);" ></div>
-	    	<img style="position: absolute; top: 0px;" class="intro" src="./img/logo.png">
+	    	<div class="noIntro footer" id="footer2" style="position:absolute; bottom:108px; width:100%; height:5px;"></div>
+	    	<div class="xmarker noIntro" style="position: absolute; bottom: 0px; left: 34; font-size: 2em; background: #525463; height: 50px; padding-left: 12px; padding-right: 12px; color: rgb(127, 115, 115);" ></div>
+	    	<div class="xmarker noIntro" style="position: absolute; bottom: 0px; right: 34; font-size: 2em; background: #525463; height: 50px; padding-left: 12px; padding-right: 12px; color: rgb(127, 115, 115);" ></div>
+	    	<img style="position: absolute; top: 0px;" class="intro mainHight" src="./img/logo.png">
 	    </div>
 		<div style="display:none;" class="controller">
-			<div id="frageDiv" style="top:500px; width:660px; margin:auto;">
-				Frage:
-			</div>
 			<div id="editQuestionsDiv" style="display:none; background: rgba(214, 205, 205, 0.95); padding-left:20px; position: absolute; top: 0px; width: 99%; min-height: 100%;">
 				<i id="closeFragenEditorIcon" style="position: fixed; right: 30px; top: 10px; font-size: 1.2em; cursor:pointer;" class="fa fa-caret-square-o-down"></i>
 				<h1 style="margin-left:50px;">Frageneditor</h1>

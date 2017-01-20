@@ -29,3 +29,12 @@
 .noIntro {
 	display:none;
 }
+
+.footer {
+	background:#aeb130;
+	color:rgb(100, 100, 100);
+}
+
+.mainHight {
+	height: 530px;
+}

@@ -236,7 +236,7 @@ function loadQuestionToGui(index) {
 	$("#schweinchenImg").hide();
 	$("#answers").empty();
 	if(index > -1) {
-		$("#frageDiv").html("Frage: "+fragen[index]["frage"]);
+		$("#displayQuestions").html(fragen[index]["frage"]);
 		for(var i=0;i<fragen[index]["antworten"].length;i++) {
 			if(fragen[index]["antworten"][i]["antwort"] != "") {
 				var oneLine = $('<div style="height:55px">'+
