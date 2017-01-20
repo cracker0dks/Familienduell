@@ -38,3 +38,10 @@
 .mainHight {
 	height: 530px;
 }
+
+#answers {
+	font-family: monospace; 
+	padding-top: 70px; 
+	padding-left: 18px; 
+	font-size: 1.5em;
+}
