@@ -44,7 +44,7 @@ ___Mac mit NodeJs___
 
 ### -B- START DES CONTROLLERS!
 
-1. in den Ordner "web" wechseln und die datei "index.html" mit dem Browser (Chrome) öffnen! (Dieses Programm wurde für Chrome entwickelt und sonst nicht getestet.)
+1. in den Ordner "web" wechseln und die datei "index.html" mit dem Browser (Chrome / Firefox) öffnen! (Dieses Programm wurde für Chrome entwickelt und wird nur dort getestet.)
 
 2. Wenn der Browser auf dem gleichen PC läuft wie der Server einfach start klicken, ansonsten die IP-Adresse anpassen.
 
@@ -63,9 +63,6 @@ ___Mac mit NodeJs___
 Q: Warum ist das Display zu Beginn schwarz, und wie kann ich das ändern?   
 A: Das Bild ist schwarz damit man die Intromusik starten kann und die Leute (Zuschauer) nicht schon vorher wissen was auf sie zukommt.
    Dies kann (Im Controller) über die Checkbox "Blackscreen", im Bereich "Intro" kontrolliert werden.
-
-Q: Ich kann keine Fragen editieren, was ist da los?   
-A: Diese Anwendung wurde für den Browser Google Chrome entwickelt. Warscheinlich verwendest du Firefox.
 
 Q: Wie funktioniert das mit 2 Rechnern?   
 A: Step by Step: 
@@ -86,12 +83,15 @@ A: Ja, dafür müssen jedoch zunächst die etsprechenden Abhänigkeiten installi
 Q: In der letzten Version waren die Fragen in der Fragen.txt noch im Klartext gespeichert, was ist passiert?   
 A: Da Linux mit Umlauten nicht umgehen kann werden die Fragen Base64 encoded abgelegt.
 
-Q:  Wie kann ich meine Alten Fragen (Klartext) in das neue System (Base64) übertragen?   
+Q: Wie kann ich meine Alten Fragen (Klartext) in das neue System (Base64) übertragen?   
 A: Wandle den Inhalt deiner fragen.txt in Base64. Dies geht einfach online:  https://www.base64encode.org/ . Überschreibe anschließend deine Fragen.txt mit dem neuen Inhalt. Fetig.
 
----------------------------
+Q: Ich habe sonstige Fehler bei (Anzeige, Verbindungsaufbau, Anwendungsverhalten)   
+A: Falls du einen anderen Browser als Google Chrome verwendest, installiere Chrome.
 
-Fragen an: rofl256@googlemail.com
+Q: Ich habe sonstige Probleme oder Fragen...
+A: Fragen, Fehlermeldungen, Beschwerden per Mail an: rofl256@googlemail.com
+---------------------------
 
 Programmierung: cracker aka rofl256
 Unterstützt durch: DiggerTigger, Anni & Naseile
