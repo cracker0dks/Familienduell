@@ -52,7 +52,7 @@ ___Mac mit NodeJs___
 
 4. Auf den Controller Button klicken.
 
-### Start des Displays
+### -C- Start des Displays
 
 1. Alle Schirtte aus "START DES CONTROLLERS!" in einem neuen Browserfenster ausführen. Dann bei Punkt 4. auf display klicken.
 
