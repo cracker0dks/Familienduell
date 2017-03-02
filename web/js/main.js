@@ -7,9 +7,7 @@ var jeopardyVolume = 1;
 var schweinchen = null;
 
 $(document).ready(function() {
-
 	$( "#fragenListe" ).sortable();
-    $( "#fragenListe" ).disableSelection();
 
     $("#closePrintScreenIcon").click(function() {
     	$("#printScreen").hide();
