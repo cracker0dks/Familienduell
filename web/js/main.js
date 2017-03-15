@@ -9,16 +9,14 @@ var schweinchen = null;
 $(document).ready(function() {
 	$( "#fragenListe" ).sortable();
 
-    $("#closePrintScreenIcon").click(function() {
-    	$("#printScreen").hide();
-    	$("#allContent").show();
-    });
-
     $("#printQuestions").click(function() {
     	$("#printDiv").empty();
     	showQuestionsAsPrint();
     	$("#printScreen").show();
     	$("#allContent").hide();
+    	window.print();
+    	$("#printScreen").hide();
+    	$("#allContent").show();
     });
 
     $("#blackScreenCheck").change(function() {
@@ -126,7 +124,7 @@ $(document).ready(function() {
 });
 
 function showQuestionsAsPrint() {
-	var ges = '<ol>';
+	var ges = '<h2 style="margin-left:30px;">Familienduell Fragen</h2><ol>';
 	for(var i=0;i<fragen.length;i++) {
 		ges += '<li>'+fragen[i]["frage"]+'</li>';
 	}
