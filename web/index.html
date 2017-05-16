@@ -10,13 +10,16 @@
 		var ip = null;
 		$(document).ready(function() {
 			if(typeof(Storage) !== "undefined") {
-			    if(localStorage.getItem("ip") == null) {
+				if(window.location.href.indexOf("ip")!==-1) {
+					var ip = window.location.href.split("ip=")[1];
+					$("#ip").val(ip);
+				} else if(localStorage.getItem("ip") == null) {
 			    	$("#ip").val("127.0.0.1");
 			    } else {
 			    	$("#ip").val(localStorage.getItem("ip"));
 			    }
 			} else {
-			    alert("Bitte einen neueren Browser verwenden!")
+			    alert("Bitte einen neueren Browser verwenden!");
 			}
 
 			$("#startButton").click(function() {

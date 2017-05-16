@@ -1,5 +1,12 @@
 var retrys = 0;
 var ip = localStorage.getItem("ip");
+var viewOnly = false;
+
+if(window.location.href.indexOf("ip")!==-1) {
+	ip = window.location.href.split("ip=")[1];
+	viewOnly = true;
+}
+
 var WSPort = 8080;
 var isWebsocketConnected = false;
 var connTimer = null;
@@ -48,6 +55,10 @@ $(document).ready(function() {
 	});
 	init_xmarker();
 	connectWs();
+
+	if(viewOnly) {
+		$("#displayBtn").click();
+	}
 });
 	
 	
