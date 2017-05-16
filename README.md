@@ -9,25 +9,6 @@ ___Windows mit NodeJs___
 2. Im Fenster das jetzt erscheint sollte: "Websocket Server running at ws://127.0.0.1:8080" stehen.
 3. Falls die Firewall fragt, solltest du die Anfrage zulassen da sonst der client nicht verbinden kann.
 
-___Linux mit Python___
-
-1. Installiere Pyton3 mit pip und git
-`sudo apt-get install python3 python3-pip git -y`
-
-2. Installiere Websockets für Python3
-`pip3 install asyncio websockets`
-
-3. Servercode downloaden
-`git clone https://github.com/cracker0dks/Familienduell.git`
-
-4. Ins Serververzeichnis wecheseln
-`cd Familienduell/Server`
-
-5. Starte den Server
-`python3 server.py`
-
-6. In der Console erscheint: "info>starting server 0.0.0.0:8080"
-
 ___Mac mit NodeJs___
 
 1. Installiere NodeJs und npm (https://nodejs.org/en/download/)

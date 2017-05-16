@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#Benötigte Module: asyncio websockets
 
 import asyncio
 import datetime
