@@ -1,4 +1,7 @@
 # Familienduell
+
+![logo](./web/img/logo.png)
+
 Familienduell Client / Server (NodeJs Javascript)
 
 ### -A- START DES SERVERS!
