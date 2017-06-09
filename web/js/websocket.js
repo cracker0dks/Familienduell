@@ -115,7 +115,7 @@ var connectWs = function() {
 		} else if(key == "file") {
 			if(value == "fragen.txt") {
 				try {
-					var base64 = atob(messageParts_a[2]);
+					var base64 = decodeURIComponent(atob(messageParts_a[2]));
 					fragen = JSON.parse(base64);
 					fillFragenEditor();
 					fillFragenSelect();

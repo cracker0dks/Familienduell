@@ -336,7 +336,7 @@ function saveQuestions() {
 		objToSave.push(oneQ);
 	});
 	var jsonQues = JSON.stringify(objToSave);
-	jsonQues = btoa(jsonQues);
+	jsonQues = btoa(encodeURIComponent(jsonQues));
 	wsSend("fileOp","write###fragen.txt###"+jsonQues);
 }
 
