@@ -68,7 +68,7 @@ Q: In der letzten Version waren die Fragen in der Fragen.txt noch im Klartext ge
 A: Da Linux mit Umlauten nicht umgehen kann werden die Fragen Base64 encoded abgelegt.
 
 Q: Wie kann ich meine Alten Fragen (Klartext) in das neue System (Base64) übertragen?   
-A: Wandle den Inhalt deiner fragen.txt in Base64. Dies geht einfach online:  https://www.base64encode.org/ . Überschreibe anschließend deine Fragen.txt mit dem neuen Inhalt. Fetig.
+A: Wandle den Inhalt deiner fragen.txt in Base64. Dies geht einfach online:  https://www.base64encode.org/ . Überschreibe anschließend deine Fragen.txt mit dem neuen Inhalt. Fertig.
 
 Q: Gibt es eine Funktion um Leuten über einen Link direkt das Zuschauen zu ermöglichen?   
 A: Ja. Der Link lautet: http://SERVERURL/PFAD/duell.html?ip=SERVERIP (SERVERURL, PFAD und SERVERIP anpassen!)
