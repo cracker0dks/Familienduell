@@ -6,13 +6,13 @@ Familienduell Client / Server (NodeJs Javascript)
 
 ### -A- START DES SERVERS!
 
-___Windows mit NodeJs___
+___Windows___
 
 1. Im Ordner "server" die Datei StartServer.bat doppelklicken.
-2. Im Fenster das jetzt erscheint sollte: "Websocket Server running at ws://127.0.0.1:8080" stehen.
-3. Falls die Firewall fragt, solltest du die Anfrage zulassen da sonst der client nicht verbinden kann.
+   * Im Fenster das jetzt erscheint sollte: "Websocket Server running at ws://127.0.0.1:8080" stehen.
+   * Falls die Firewall fragt, solltest du die Anfrage zulassen da sonst der client nicht verbinden kann.
 
-___Mac mit NodeJs___
+___Mac___
 
 1. Installiere NodeJs und npm (https://nodejs.org/en/download/)
 
@@ -30,9 +30,9 @@ ___Mac mit NodeJs___
 
 1. in den Ordner "web" wechseln und die datei "index.html" mit dem Browser (Chrome / Firefox) öffnen! (Dieses Programm wurde für Chrome entwickelt und wird nur dort getestet.)
 
-2. Wenn der Browser auf dem gleichen PC läuft wie der Server einfach start klicken, ansonsten die IP-Adresse anpassen.
+   * Wenn der Browser auf dem gleichen PC läuft wie der Server einfach start klicken, ansonsten die IP-Adresse anpassen.
 
-3. (Oben links, in der Ecke des Browsers, sollte nun entwas in der Art "Verbunden mit: ws://127.0.0.1:8080" stehen.)
+   * (Oben links, in der Ecke des Browsers, sollte nun entwas in der Art "Verbunden mit: ws://127.0.0.1:8080" stehen.)
 
 4. Auf den Controller Button klicken.
 
