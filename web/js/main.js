@@ -141,7 +141,7 @@ $(document).ready(function() {
 });
 
 function setFinalMode(status){
-	isFinalMode = status;
+	isFinalMode = status == "true" ? true : false;
 }
 
 function setPlayer2(value){
