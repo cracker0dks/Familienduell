@@ -15,6 +15,9 @@ var ws;
 var display = true;
 var audio = null;
 var serverSound = false;
+var isFinalMode = false;
+var player2 = false;
+var runde = 1;
 
 $(document).ready(function() {
 	$("#displayBtn").click(function() {
@@ -161,7 +164,16 @@ var connectWs = function() {
 			if(display) {
 				$("#blackScreen").toggle();
 			}
+		} else if (key == "toggleFinalMode"){
+			setFinalMode(value);
 		}
+        else if (key == "setPlayer2ForFinalMode"){
+            setPlayer2(value);
+        }
+        else if (key == "setRunde"){
+            console.log('Set Runde to ' + value);
+            setRunde(value);
+        }
 	}
 }
 

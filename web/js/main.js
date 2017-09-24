@@ -23,6 +23,16 @@ $(document).ready(function() {
     	wsSend("toggleBlackScreen", "");
     });
 
+    $("#modeFinal").change(function() {
+    	var status = $('#modeFinal').is(':checked');
+        wsSend("toggleFinalMode", status);
+    });
+
+    $("#player2").change(function() {
+        var player = $('#player2').is(':checked');
+        wsSend("setPlayer2ForFinalMode", player);
+    });
+
     $("#startJeopardybtn").click(function() {
     	$("#startJeopardybtn").attr("disabled", "disabled");
     	wsSend("startJeopardy", "");
@@ -130,9 +140,18 @@ $(document).ready(function() {
 
 });
 
+function setFinalMode(status){
+	isFinalMode = status;
+}
+
+function setPlayer2(value){
+	player2 = value;
+}
+
 function setRunde(value){
 	runde = value;
 }
+
 function showQuestionsAsPrint() {
 	var ges = '<h2 style="margin-left:30px;">Familienduell Fragen</h2><ol>';
 	for(var i=0;i<fragen.length;i++) {
@@ -162,7 +181,7 @@ function setRightPoints(newPoints) {
 
 function startJeopardy() {
 	if(sounds && (display || serverSound)) {
-		jeopardy = new Audio('./sounds/jeopardy.mp3');
+		jeopardy = new Audio('./sounds/failFinal.mp3');
 		jeopardy.volume = jeopardyVolume;
 		jeopardy.play();
 	}
@@ -252,20 +271,58 @@ function changeFrage() {
 
 function loadQuestionToGui(index) {
 	$("#schweinchenImg").hide();
-	$("#answers").empty();
+    $("#schweinchen1Img").hide();
+    $("#schweinchen2Img").hide();
+	if (!(player2 && display)) {
+		$("#answers").empty();
+    }
+
+	$('.footer').toggle(!isFinalMode);
+    $('.xmarker').toggle(!isFinalMode);
+    $("#ResSum_player1").toggle(isFinalMode);
+    $("#ResSum_player2").toggle(isFinalMode);
+    if (!isFinalMode){
+    	$("#resultFinal").hide();
+	} else {
+        $("#resultFinal").show();
+	}
+    $("#result").toggle(!isFinalMode);
+
 	if(index > -1) {
-		$("#displayQuestions").html(fragen[index]["frage"]);
+        $("#displayQuestions").html(fragen[index]["frage"]);
+		if (isFinalMode){
+            $("#displayQuestions").hide();
+		} else {
+            $("#displayQuestions").show();
+		}
 		for(var i=0;i<fragen[index]["antworten"].length;i++) {
 			if(fragen[index]["antworten"][i]["antwort"] != "") {
-				var oneLine = $('<div style="height:55px">'+
-	    			'<div style="width: 52px; float: left;" class="nr">'+(i+1)+'.</div>'+
-	    			'<div style="width: 860px; float: left;" class="answer"></div>'+
-	    			'<div style="width: 52px; float: left;" class="points"></div>'+
-	    		'</div>');
-	    		if(display) {
-	    			oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
+                if (!isFinalMode) {
+                    var oneLine = $('<div style="height:55px">' +
+                        '<div style="width: 52px; float: left;" class="nr">' + (i + 1) + '.</div>' +
+                        '<div style="width: 860px; float: left;" class="answer"></div>' +
+                        '<div style="width: 52px; float: left;" class="points"></div>' +
+                        '</div>');
+                } else {
+                    var oneLine = $('<div style="height:55px">' +
+                        '<div style="width: 430px; float: left;" class="answer"></div>' +
+                        '<div style="width: 52px; float: left;" class="points"></div>' +
+                        '<div style="width: 52px; float: left;" class="points_player2"></div>' +
+                        '<div style="width: 430px; float: left;" class="answer_player2"></div>' +
+                        '</div>');
+                }
+	    		if(display && !player2) {
+                    if (isFinalMode) {
+                        oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _");
+                    } else {
+                        oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
+					}
 	    			oneLine.find(".points").text("--");
-	    		} else {
+	    			if (isFinalMode){
+	    				oneLine.find(".points_player2").text("--");
+	    				oneLine.find(".answer_player2").text("_ _ _ _ _ _ _ _ _ _");
+	    			}
+	    		} else if (!display) {
 	    			oneLine.find(".answer").html('<span class="markOnHover">'+getAnswerString(fragen[index]["antworten"][i]["antwort"])+'</span>');
 	    			oneLine.find(".points").html('<span class="markOnHover">'+fragen[index]["antworten"][i]["anz"]+'</span>');
 	    			(function() {
@@ -283,13 +340,27 @@ function loadQuestionToGui(index) {
 	    	}
 		}
 	}
-	$("#SumRes").text("0");
-	recalcSum(0);
+	if (!isFinalMode) {
+        $("#SumRes").text("0");
+    }
+	if (isFinalMode){
+        if (!player2) {
+            $('#SumRes_player1').html("0");
+            $('#SumRes_player2').html("0");
+        }
+	}
+	if (!player2) {
+        recalcSum(0);
+    }
 }
 
 function setAnswer(index, answer) {
+    var answer_select = ".answer";
+    if (player2){
+    	answer_select = '.answer_player2';
+	}
 	answer = getAnswerString(answer);
-	var el = $($("#answers").find(".answer")[index]);
+	var el = $($("#answers").find(answer_select)[index]);
 	el.empty();
 	if(sounds && (display || serverSound)) {
 		audio = new Audio('./sounds/textRichtig.mp3');
@@ -302,7 +373,11 @@ function setAnswer(index, answer) {
 }
 
 function setAnz(index, nr) {
-	var el = $($("#answers").find(".points")[index]);
+    var points_select = ".points";
+    if (player2){
+    	points_select = '.points_player2';
+	}
+	var el = $($("#answers").find(points_select)[index]);
 	el.text(nr);
 	if(sounds && (display || serverSound)) {
 		audio = new Audio('./sounds/zahlRichtig.mp3');
@@ -312,7 +387,15 @@ function setAnz(index, nr) {
 }
 
 function recalcSum(s) {
-	$("#SumRes").text(parseFloat($("#SumRes").text())+parseFloat(s));
+	var sum_selector = '#SumRes';
+	if (isFinalMode) {
+        if (player2) {
+            sum_selector = '#SumRes_player2';
+        } else {
+            sum_selector = '#SumRes_player1';
+        }
+    }
+	$(sum_selector).text(parseFloat($(sum_selector).text())+parseFloat(s));
 }
 
 function getAnswerString(str) {
@@ -321,7 +404,11 @@ function getAnswerString(str) {
 		str+="_";
 	}
 	anz = str.length;
-	while(str.length < 40) {
+	var maxLength = 40;
+	if (isFinalMode){
+		maxLength = 20;
+	}
+	while(str.length < maxLength) {
 		str+= " _";
 	}
 	return str;
