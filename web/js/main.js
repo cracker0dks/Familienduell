@@ -38,14 +38,21 @@ $(document).ready(function() {
 		wsSend("setJeopardyVolume", v);	
 	});
 
-     $("#startScheinchenbtn").click(function() {
-    	$("#startScheinchenbtn").attr("disabled", "disabled");
-    	wsSend("startSchweinchen", "");
+    $("button[id^='startScheinchenbtn']").each(function(){
+        $(this).click(function() {
+            var status = $(this).attr('value');
+            console.log('status' + status);
+            wsSend("setRunde", status);
+            $(this).attr("disabled", "disabled");
+            wsSend("startSchweinchen", "");
+        });
     });
 
-     $("#stopScheinchenbtn").click(function() {
-     	$("#startScheinchenbtn").removeAttr("disabled");
-     	wsSend("stopSchweinchen", "");
+    $("#stopScheinchenbtn").click(function() {
+        $("button[id^='startScheinchenbtn']").each(function(){
+            $(this).removeAttr("disabled");
+        });
+        wsSend("stopSchweinchen", "");
     });
 
      $("#schweinchenVolume").on("input", function() {
@@ -123,6 +130,9 @@ $(document).ready(function() {
 
 });
 
+function setRunde(value){
+	runde = value;
+}
 function showQuestionsAsPrint() {
 	var ges = '<h2 style="margin-left:30px;">Familienduell Fragen</h2><ol>';
 	for(var i=0;i<fragen.length;i++) {
@@ -165,7 +175,14 @@ function stopJeopardy() {
 }
 
 function startSchweinchen() {
-	$("#schweinchenImg").show();
+	if (runde == 2){
+        $("#schweinchen2Img").show();
+	} else if (runde == 3){
+        $("#schweinchenImg").show();
+	} else {
+        $("#schweinchen1Img").show();
+	}
+
 	$("#answers").hide();
 	$("#displayQuestions").hide();
 	
@@ -182,6 +199,8 @@ function stopSchweinchen() {
 	changeFrage();
 
 	$("#schweinchenImg").hide();
+    $("#schweinchen1Img").hide();
+    $("#schweinchen2Img").hide();
 	$("#answers").show();
 	$("#displayQuestions").show();
 	if(schweinchen) {
