@@ -142,6 +142,7 @@ function setFinalMode(status){
 }
 
 function setPlayer2(value){
+	value = value == "true" ? true : false;
 	player2 = value;
 }
 
