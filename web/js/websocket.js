@@ -127,7 +127,8 @@ var connectWs = function() {
 				}
 			}
 		} else if(key == "loadQuestion") {
-			loadQuestionToGui(value);
+			if(!(display && isFinalMode))
+				loadQuestionToGui(value);
 		} else if(key == "setAnswer") {
 			setAnswer(value, messageParts_a[2]);
 		} else if(key == "setAnz") {

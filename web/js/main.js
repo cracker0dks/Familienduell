@@ -142,6 +142,10 @@ $(document).ready(function() {
 		var is = $("#finalFragenSelect").val();
 		wsSend("setAnz", is+"###0");
 	});
+
+	$("#finalmodusInfoBtn").click(function(){
+		alert("Im Finalmodus geklickte Antworten und Punkte werden nur auf dem Display angezeigt!")
+	});
 });
 
 function setFinalMode(status){
@@ -307,23 +311,23 @@ function loadQuestionToGui(index) {
                         '<div style="width: 52px; float: left;" class="points"></div>' +
                         '</div>');
                 } else {
-                    var oneLine = $('<div style="height:55px">' +
-                        '<div style="width: 430px; float: left;" class="answer"></div>' +
+                    var oneLine = $('<div style="margin-left: 20px;  height:55px">' +
+                        '<div style="margin-left: 15px; width: 400px; float: left;" class="answer"></div>' +
                         '<div style="width: 52px; float: left;" class="points"></div>' +
-                        '<div style="width: 52px; float: left;" class="points_player2"></div>' +
-                        '<div style="width: 430px; float: left;" class="answer_player2"></div>' +
+                        '<div style="width: 65px; float: left;" class="points_player2"></div>' +
+                        '<div style="width: 400px; float: left;" class="answer_player2"></div>' +
                         '</div>');
                 }
 	    		if(display && !player2) {
                     if (isFinalMode) {
-                        oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _");
+                        oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _");
                     } else {
                         oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
 					}
 	    			oneLine.find(".points").text("--");
 	    			if (isFinalMode){
 	    				oneLine.find(".points_player2").text("--");
-	    				oneLine.find(".answer_player2").text("_ _ _ _ _ _ _ _ _ _");
+	    				oneLine.find(".answer_player2").text("_ _ _ _ _ _ _ _ _ _ _");
 	    			}
 	    		} else if (!display) {
 	    			oneLine.find(".answer").html('<span class="markOnHover">'+getAnswerString(fragen[index]["antworten"][i]["antwort"])+'</span>');
@@ -331,14 +335,17 @@ function loadQuestionToGui(index) {
 	    			(function() {
 	    				var is = i;
 	    				var is2 = i;
-	    				if (isFinalMode){
-	    					is = $("#finalFragenSelect").val();
-	    				}
 	    				var frage = fragen[index];
 	    				oneLine.find(".answer").click(function() {
+	    					if (isFinalMode){
+		    					is = $("#finalFragenSelect").val();
+		    				}
 	    					wsSend("setAnswer", is+"###"+frage["antworten"][is2]["antwort"]);
 	    				});
 	    				oneLine.find(".points").click(function() {
+	    					if (isFinalMode){
+		    					is = $("#finalFragenSelect").val();
+		    				}
 	    					wsSend("setAnz", is+"###"+frage["antworten"][is2]["anz"]);
 	    				});
 	    			})();
@@ -350,6 +357,9 @@ function loadQuestionToGui(index) {
 	if (!isFinalMode) {
         $("#SumRes").text("0");
     }
+    if(!display)
+    	$("#resultFinal").hide();
+
 	if (isFinalMode){
         if (!player2) {
             $('#SumRes_player1').html("0");
@@ -362,51 +372,67 @@ function loadQuestionToGui(index) {
 }
 
 function setAnswer(index, answer) {
-    var answer_select = ".answer";
-    if (player2){
-    	answer_select = '.answer_player2';
+	if(!(isFinalMode && !display)) { //not do it at final mode and controller
+	    var answer_select = ".answer";
+	    if (player2){
+	    	answer_select = '.answer_player2';
+		}
+		answer = getAnswerString(answer);
+		var el = $($("#answers").find(answer_select)[index]);
+		el.empty();
+		if(sounds && (display || serverSound)) {
+			audio = new Audio('./sounds/textRichtig.mp3');
+			audio.play();
+		}
+		el.typed({
+	        strings: [answer],
+	        typeSpeed: 10,
+	        showCursor: false,
+	        cursorChar: "",
+	        fadeOut: true,
+	        fadeOutDelay: 0,
+	    });  		
 	}
-	answer = getAnswerString(answer);
-	var el = $($("#answers").find(answer_select)[index]);
-	el.empty();
-	if(sounds && (display || serverSound)) {
-		audio = new Audio('./sounds/textRichtig.mp3');
-		audio.play();
-	}
-	el.typed({
-        strings: [answer],
-        typeSpeed: 50,
-        showCursor: false,
-        cursorChar: "",
-        fadeOut: true,
-        fadeOutDelay: 0,
-    });
 }
 
 function setAnz(index, nr) {
-    var points_select = ".points";
-    if (player2){
-    	points_select = '.points_player2';
+	if(!(isFinalMode && !display)) { //not do it at final mode and controller
+	    var points_select = ".points";
+	    if (player2){
+	    	points_select = '.points_player2';
+		}
+		var el = $($("#answers").find(points_select)[index]);
+		el.text(nr);
+		if(sounds && (display || serverSound)) {
+			audio = new Audio('./sounds/zahlRichtig.mp3');
+			audio.play();
+		}
+		recalcSum(nr);
 	}
-	var el = $($("#answers").find(points_select)[index]);
-	el.text(nr);
-	if(sounds && (display || serverSound)) {
-		audio = new Audio('./sounds/zahlRichtig.mp3');
-		audio.play();
-	}
-	recalcSum(nr);
 }
 
 function recalcSum(s) {
 	var sum_selector = '#SumRes';
 	if (isFinalMode) {
-        if (player2) {
-            sum_selector = '#SumRes_player2';
-        } else {
-            sum_selector = '#SumRes_player1';
-        }
+		var p1p = 0;
+		var p2p = 0;
+		$.each($(".points"), function() {
+			var v = $(this).text();
+			if(v != "--") {
+				p1p = p1p + parseFloat(v);
+			}
+		});
+		$.each($(".points_player2"), function() {
+			var v = $(this).text();
+			if(v != "--") {
+				p2p = p2p + parseFloat(v);
+			}
+		});
+		$("#SumRes_player1").text(p1p);
+		$("#SumRes_player2").text(p2p);
+    } else {
+    	$(sum_selector).text(parseFloat($(sum_selector).text())+parseFloat(s));
     }
-	$(sum_selector).text(parseFloat($(sum_selector).text())+parseFloat(s));
 }
 
 function getAnswerString(str) {
