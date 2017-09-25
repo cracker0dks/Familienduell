@@ -153,6 +153,7 @@ function setFinalMode(status){
 	$(".finalElement").attr("disabled", !isFinalMode);
 	var index = $("#questionsSelcet>option:selected").index();
 	index = index > 0 ? index : 0;
+	$("#answers").empty();
 	loadQuestionToGui(index);
 }
 
@@ -280,7 +281,7 @@ function loadQuestionToGui(index) {
 	$("#schweinchenImg").hide();
     $("#schweinchen1Img").hide();
     $("#schweinchen2Img").hide();
-	if (!(player2 && display)) {
+	if (!display) {
 		$("#answers").empty();
     }
 
