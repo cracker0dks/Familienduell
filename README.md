@@ -83,4 +83,6 @@ A: Fragen, Fehlermeldungen, Beschwerden per Mail an: rofl256@googlemail.com
 Programmierung: cracker aka rofl256
 Unterstützt durch: DiggerTigger, Anni & Naseile
 
-Danke an: [flbe](https://github.com/flbe) für den Python Server
+Danke auch an: 
+ * [flbe](https://github.com/flbe) für den Python Server
+ * [susgo](https://github.com/susgo) für den Finalmodus
