@@ -281,9 +281,7 @@ function loadQuestionToGui(index) {
 	$("#schweinchenImg").hide();
     $("#schweinchen1Img").hide();
     $("#schweinchen2Img").hide();
-	if (!display) {
-		$("#answers").empty();
-    }
+	$("#answers").empty();
 
 	$('.footer').toggle(!isFinalMode);
     $('.xmarker').toggle(!isFinalMode);
