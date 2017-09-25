@@ -70,10 +70,10 @@
 						<td><b>Global</b></td>
 						<td><b>Server</b></td>
 						<td><b>Intro</b></td>
-						<td><b>Final mode: answer fail</b></td>
 						<td><b>Schweinchen</b></td>
 						<td><b>Clear Fails</b></td>
 						<td><b>Punkte</b></td>
+						<td><b>Finalmodus</b> <input id="modeFinal" type="checkbox"></td>
 					</tr>
 					<tr>
 						<td><img id="toggleSoundImg" style="cursor:pointer;" width="35px;" src="./img/soundOn.png"></td>
@@ -87,16 +87,9 @@
 							Blackscreen: <input id="blackScreenCheck" checked="checked" type="checkbox">
 						</td>
 						<td>
-							<button id="startJeopardybtn"><i class="fa fa-play"></i>Final mode: answer fail</button><br>
-							<button id="stopJeopardybtn"><i class="fa fa-stop"></i> Final mode: answer fail</button><br>
-							<img width="20px;" src="./img/noSound.png"> 
-							<input id="jeopardyVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
-							<img width="20px;" src="./img/soundOn.png">
-						</td>
-						<td>
 							<button id="startScheinchenbtn" value="1"><i class="fa fa-play"></i> Schweinchen</button><br>
-							<button id="startScheinchenbtn2" value="2"><i class="fa fa-play"></i> Schweinchen (doppelte Punktzahl)</button><br>
-							<button id="startScheinchenbtn3" value="3"><i class="fa fa-play"></i> Schweinchen (dreifache Punktzahl)</button><br>
+							<button id="startScheinchenbtn2" value="2"><i class="fa fa-play"></i> Schweinchen (2x)</button><br>
+							<button id="startScheinchenbtn3" value="3"><i class="fa fa-play"></i> Schweinchen (3x)</button><br>
 							<button id="stopScheinchenbtn"><i class="fa fa-stop"></i> Schweinchen</button><br>
 							<img width="20px;" src="./img/noSound.png"> 
 							<input id="schweinchenVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
@@ -115,16 +108,18 @@
 								</tr>
 							</table>
 						</td>
+						<td>
+							<button id="startAnswerFailBtn"><i class="fa fa-play"></i> Antwort falsch</button><br>
+							<img width="20px;" src="./img/noSound.png"> 
+							<input id="answerFailVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
+							<img width="20px;" src="./img/soundOn.png">
+							<div>
+								<lable>Spieler 1: <input class="playerTgl finalElement" disabled="true" checked="true" type="radio" value="1" name="fmod"></lable><br>
+								<lable>Spieler 2: <input class="playerTgl finalElement" disabled="true" type="radio" value="2" name="fmod"></lable>
+							</div>
+						</td>
 					</tr>
 				</table>
-				<br>
-				<div>
-					Finalmodus: <input id="modeFinal" type="checkbox">
-				</div>
-				<br>
-				<div>
-					Finalmodus Spieler 2 spielt: <input id="player2" type="checkbox">
-				</div>
 				<br>
 				<table>
 					<tr>

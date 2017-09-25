@@ -1,9 +1,9 @@
 ﻿var fragen = null;
 var intro = null;
 var introVolume = 1;
-var jeopardy = null;
+var answerFail = null;
 var schweinchenVolume = 1;
-var jeopardyVolume = 1;
+var answerFailVolume = 1;
 var schweinchen = null;
 
 $(document).ready(function() {
@@ -28,24 +28,18 @@ $(document).ready(function() {
         wsSend("toggleFinalMode", status);
     });
 
-    $("#player2").change(function() {
-        var player = $('#player2').is(':checked');
+    $(".playerTgl").change(function() {
+        var player = $(this).val() == 1 ? false : true;
         wsSend("setPlayer2ForFinalMode", player);
     });
 
-    $("#startJeopardybtn").click(function() {
-    	$("#startJeopardybtn").attr("disabled", "disabled");
-    	wsSend("startJeopardy", "");
+    $("#startAnswerFailBtn").click(function() {
+    	wsSend("startAnswerFail", "");
     });
 
-     $("#stopJeopardybtn").click(function() {
-     	$("#startJeopardybtn").removeAttr("disabled");
-     	wsSend("stopJeopardy", "");
-    });
-
-     $("#jeopardyVolume").on("input", function() {
+     $("#answerFailVolume").on("input", function() {
 		var v = parseFloat($(this).val()) / 10;
-		wsSend("setJeopardyVolume", v);	
+		wsSend("setAnswerFailVolume", v);	
 	});
 
     $("button[id^='startScheinchenbtn']").each(function(){
@@ -142,6 +136,9 @@ $(document).ready(function() {
 
 function setFinalMode(status){
 	isFinalMode = status == "true" ? true : false;
+	$(".finalElement").attr("disabled", !isFinalMode);
+	var index = $("#questionsSelcet>option:selected").index();
+	loadQuestionToGui(index);
 }
 
 function setPlayer2(value){
@@ -179,17 +176,11 @@ function setRightPoints(newPoints) {
 	}
 }
 
-function startJeopardy() {
+function startAnswerFail() {
 	if(sounds && (display || serverSound)) {
-		jeopardy = new Audio('./sounds/failFinal.mp3');
-		jeopardy.volume = jeopardyVolume;
-		jeopardy.play();
-	}
-}
-
-function stopJeopardy() {
-	if(jeopardy) {
-		jeopardy.pause();
+		answerFail = new Audio('./sounds/failFinal.mp3');
+		answerFail.volume = answerFailVolume;
+		answerFail.play();
 	}
 }
 

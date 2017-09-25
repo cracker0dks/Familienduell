@@ -144,14 +144,12 @@ var connectWs = function() {
 			setLeftPoints(value);
 		} else if(key == "setRightPoints") {
 			setRightPoints(value);
-		} else if(key == "startJeopardy") {
-			startJeopardy();
-		} else if(key == "stopJeopardy") {
-			stopJeopardy();
-		} else if(key == "setJeopardyVolume") {
-			jeopardyVolume = value;
-			if(jeopardy != null)
-				jeopardy.volume = jeopardyVolume;
+		} else if(key == "startAnswerFail") {
+			startAnswerFail();
+		} else if(key == "setAnswerFailVolume") {
+			answerFailVolume = value;
+			if(answerFail != null)
+				answerFail.volume = answerFailVolume;
 		} else if(key == "startSchweinchen") {
 			startSchweinchen();
 		} else if(key == "stopSchweinchen") {
