@@ -132,12 +132,23 @@ $(document).ready(function() {
 		wsSend("setRightPoints", $("#mPunkteRight").val());
 	});
 
+	$("#alternateAnswerBtn").click(function(){
+		var is = $("#finalFragenSelect").val();
+		var answer = $("#alternateAnswer").val();
+		wsSend("setAnswer", is+"###"+answer);
+	});
+
+	$("#alternateAnswerPBtn").click(function(){
+		var is = $("#finalFragenSelect").val();
+		wsSend("setAnz", is+"###0");
+	});
 });
 
 function setFinalMode(status){
 	isFinalMode = status == "true" ? true : false;
 	$(".finalElement").attr("disabled", !isFinalMode);
 	var index = $("#questionsSelcet>option:selected").index();
+	index = index > 0 ? index : 0;
 	loadQuestionToGui(index);
 }
 
@@ -319,12 +330,16 @@ function loadQuestionToGui(index) {
 	    			oneLine.find(".points").html('<span class="markOnHover">'+fragen[index]["antworten"][i]["anz"]+'</span>');
 	    			(function() {
 	    				var is = i;
+	    				var is2 = i;
+	    				if (isFinalMode){
+	    					is = $("#finalFragenSelect").val();
+	    				}
 	    				var frage = fragen[index];
 	    				oneLine.find(".answer").click(function() {
-	    					wsSend("setAnswer", is+"###"+frage["antworten"][is]["antwort"]);
+	    					wsSend("setAnswer", is+"###"+frage["antworten"][is2]["antwort"]);
 	    				});
 	    				oneLine.find(".points").click(function() {
-	    					wsSend("setAnz", is+"###"+frage["antworten"][is]["anz"]);
+	    					wsSend("setAnz", is+"###"+frage["antworten"][is2]["anz"]);
 	    				});
 	    			})();
 	    		}
@@ -360,7 +375,11 @@ function setAnswer(index, answer) {
 	}
 	el.typed({
         strings: [answer],
-        typeSpeed: 20
+        typeSpeed: 50,
+        showCursor: false,
+        cursorChar: "",
+        fadeOut: true,
+        fadeOutDelay: 0,
     });
 }
 

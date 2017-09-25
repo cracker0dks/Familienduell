@@ -115,7 +115,15 @@
 							<img width="20px;" src="./img/soundOn.png">
 							<div>
 								<lable>Spieler 1: <input class="playerTgl finalElement" disabled="true" checked="true" type="radio" value="1" name="fmod"></lable><br>
-								<lable>Spieler 2: <input class="playerTgl finalElement" disabled="true" type="radio" value="2" name="fmod"></lable>
+								<lable>Spieler 2: <input class="playerTgl finalElement" disabled="true" type="radio" value="2" name="fmod"></lable><br>
+								Frage: <select class="finalElement" disabled="true" id="finalFragenSelect">
+									<option value="0"> 1</option>
+									<option value="1"> 2</option>
+									<option value="2"> 3</option>
+									<option value="3"> 4</option>
+									<option value="4"> 5</option>
+								</select><br>
+								Alternative Antwort (0 Punkte):<br> <input class="finalElement" id="alternateAnswer" maxlength="20" disabled="true" type="text" name=""><button class="finalElement" id="alternateAnswerBtn" disabled="true">Setzten</button><button class="finalElement" id="alternateAnswerPBtn" disabled="true">P</button>
 							</div>
 						</td>
 					</tr>
