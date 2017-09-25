@@ -1,9 +1,9 @@
 ﻿var fragen = null;
 var intro = null;
 var introVolume = 1;
-var jeopardy = null;
+var answerFail = null;
 var schweinchenVolume = 1;
-var jeopardyVolume = 1;
+var answerFailVolume = 1;
 var schweinchen = null;
 
 $(document).ready(function() {
@@ -23,29 +23,40 @@ $(document).ready(function() {
     	wsSend("toggleBlackScreen", "");
     });
 
-    $("#startJeopardybtn").click(function() {
-    	$("#startJeopardybtn").attr("disabled", "disabled");
-    	wsSend("startJeopardy", "");
+    $("#modeFinal").change(function() {
+    	var status = $('#modeFinal').is(':checked');
+        wsSend("toggleFinalMode", status);
     });
 
-     $("#stopJeopardybtn").click(function() {
-     	$("#startJeopardybtn").removeAttr("disabled");
-     	wsSend("stopJeopardy", "");
+    $(".playerTgl").change(function() {
+        var player = $(this).val() == 1 ? false : true;
+        wsSend("setPlayer2ForFinalMode", player);
     });
 
-     $("#jeopardyVolume").on("input", function() {
+    $("#startAnswerFailBtn").click(function() {
+    	wsSend("startAnswerFail", "");
+    });
+
+     $("#answerFailVolume").on("input", function() {
 		var v = parseFloat($(this).val()) / 10;
-		wsSend("setJeopardyVolume", v);	
+		wsSend("setAnswerFailVolume", v);	
 	});
 
-     $("#startScheinchenbtn").click(function() {
-    	$("#startScheinchenbtn").attr("disabled", "disabled");
-    	wsSend("startSchweinchen", "");
+    $("button[id^='startScheinchenbtn']").each(function(){
+        $(this).click(function() {
+            var status = $(this).attr('value');
+            console.log('status' + status);
+            wsSend("setRunde", status);
+            $(this).attr("disabled", "disabled");
+            wsSend("startSchweinchen", "");
+        });
     });
 
-     $("#stopScheinchenbtn").click(function() {
-     	$("#startScheinchenbtn").removeAttr("disabled");
-     	wsSend("stopSchweinchen", "");
+    $("#stopScheinchenbtn").click(function() {
+        $("button[id^='startScheinchenbtn']").each(function(){
+            $(this).removeAttr("disabled");
+        });
+        wsSend("stopSchweinchen", "");
     });
 
      $("#schweinchenVolume").on("input", function() {
@@ -121,7 +132,38 @@ $(document).ready(function() {
 		wsSend("setRightPoints", $("#mPunkteRight").val());
 	});
 
+	$("#alternateAnswerBtn").click(function(){
+		var is = $("#finalFragenSelect").val();
+		var answer = $("#alternateAnswer").val();
+		wsSend("setAnswer", is+"###"+answer);
+	});
+
+	$("#alternateAnswerPBtn").click(function(){
+		var is = $("#finalFragenSelect").val();
+		wsSend("setAnz", is+"###0");
+	});
+
+	$("#finalmodusInfoBtn").click(function(){
+		alert("Im Finalmodus geklickte Antworten und Punkte werden nur auf dem Display angezeigt!")
+	});
 });
+
+function setFinalMode(status){
+	isFinalMode = status == "true" ? true : false;
+	$(".finalElement").attr("disabled", !isFinalMode);
+	var index = $("#questionsSelcet>option:selected").index();
+	index = index > 0 ? index : 0;
+	loadQuestionToGui(index);
+}
+
+function setPlayer2(value){
+	value = value == "true" ? true : false;
+	player2 = value;
+}
+
+function setRunde(value){
+	runde = value;
+}
 
 function showQuestionsAsPrint() {
 	var ges = '<h2 style="margin-left:30px;">Familienduell Fragen</h2><ol>';
@@ -150,22 +192,23 @@ function setRightPoints(newPoints) {
 	}
 }
 
-function startJeopardy() {
+function startAnswerFail() {
 	if(sounds && (display || serverSound)) {
-		jeopardy = new Audio('./sounds/jeopardy.mp3');
-		jeopardy.volume = jeopardyVolume;
-		jeopardy.play();
-	}
-}
-
-function stopJeopardy() {
-	if(jeopardy) {
-		jeopardy.pause();
+		answerFail = new Audio('./sounds/failFinal.mp3');
+		answerFail.volume = answerFailVolume;
+		answerFail.play();
 	}
 }
 
 function startSchweinchen() {
-	$("#schweinchenImg").show();
+	if (runde == 2){
+        $("#schweinchen2Img").show();
+	} else if (runde == 3){
+        $("#schweinchenImg").show();
+	} else {
+        $("#schweinchen1Img").show();
+	}
+
 	$("#answers").hide();
 	$("#displayQuestions").hide();
 	
@@ -182,6 +225,8 @@ function stopSchweinchen() {
 	changeFrage();
 
 	$("#schweinchenImg").hide();
+    $("#schweinchen1Img").hide();
+    $("#schweinchen2Img").hide();
 	$("#answers").show();
 	$("#displayQuestions").show();
 	if(schweinchen) {
@@ -233,30 +278,75 @@ function changeFrage() {
 
 function loadQuestionToGui(index) {
 	$("#schweinchenImg").hide();
-	$("#answers").empty();
+    $("#schweinchen1Img").hide();
+    $("#schweinchen2Img").hide();
+	if (!(player2 && display)) {
+		$("#answers").empty();
+    }
+
+	$('.footer').toggle(!isFinalMode);
+    $('.xmarker').toggle(!isFinalMode);
+    $("#ResSum_player1").toggle(isFinalMode);
+    $("#ResSum_player2").toggle(isFinalMode);
+    if (!isFinalMode){
+    	$("#resultFinal").hide();
+	} else {
+        $("#resultFinal").show();
+	}
+    $("#result").toggle(!isFinalMode);
+
 	if(index > -1) {
-		$("#displayQuestions").html(fragen[index]["frage"]);
+        $("#displayQuestions").html(fragen[index]["frage"]);
+		if (isFinalMode){
+            $("#displayQuestions").hide();
+		} else {
+            $("#displayQuestions").show();
+		}
 		for(var i=0;i<fragen[index]["antworten"].length;i++) {
 			if(fragen[index]["antworten"][i]["antwort"] != "") {
-				var oneLine = $('<div style="height:55px">'+
-	    			'<div style="width: 52px; float: left;" class="nr">'+(i+1)+'.</div>'+
-	    			'<div style="width: 860px; float: left;" class="answer"></div>'+
-	    			'<div style="width: 52px; float: left;" class="points"></div>'+
-	    		'</div>');
-	    		if(display) {
-	    			oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
+                if (!isFinalMode) {
+                    var oneLine = $('<div style="height:55px">' +
+                        '<div style="width: 52px; float: left;" class="nr">' + (i + 1) + '.</div>' +
+                        '<div style="width: 860px; float: left;" class="answer"></div>' +
+                        '<div style="width: 52px; float: left;" class="points"></div>' +
+                        '</div>');
+                } else {
+                    var oneLine = $('<div style="margin-left: 20px;  height:55px">' +
+                        '<div style="margin-left: 15px; width: 400px; float: left;" class="answer"></div>' +
+                        '<div style="width: 52px; float: left;" class="points"></div>' +
+                        '<div style="width: 65px; float: left;" class="points_player2"></div>' +
+                        '<div style="width: 400px; float: left;" class="answer_player2"></div>' +
+                        '</div>');
+                }
+	    		if(display && !player2) {
+                    if (isFinalMode) {
+                        oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _");
+                    } else {
+                        oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
+					}
 	    			oneLine.find(".points").text("--");
-	    		} else {
+	    			if (isFinalMode){
+	    				oneLine.find(".points_player2").text("--");
+	    				oneLine.find(".answer_player2").text("_ _ _ _ _ _ _ _ _ _ _");
+	    			}
+	    		} else if (!display) {
 	    			oneLine.find(".answer").html('<span class="markOnHover">'+getAnswerString(fragen[index]["antworten"][i]["antwort"])+'</span>');
 	    			oneLine.find(".points").html('<span class="markOnHover">'+fragen[index]["antworten"][i]["anz"]+'</span>');
 	    			(function() {
 	    				var is = i;
+	    				var is2 = i;
 	    				var frage = fragen[index];
 	    				oneLine.find(".answer").click(function() {
-	    					wsSend("setAnswer", is+"###"+frage["antworten"][is]["antwort"]);
+	    					if (isFinalMode){
+		    					is = $("#finalFragenSelect").val();
+		    				}
+	    					wsSend("setAnswer", is+"###"+frage["antworten"][is2]["antwort"]);
 	    				});
 	    				oneLine.find(".points").click(function() {
-	    					wsSend("setAnz", is+"###"+frage["antworten"][is]["anz"]);
+	    					if (isFinalMode){
+		    					is = $("#finalFragenSelect").val();
+		    				}
+	    					wsSend("setAnz", is+"###"+frage["antworten"][is2]["anz"]);
 	    				});
 	    			})();
 	    		}
@@ -264,36 +354,85 @@ function loadQuestionToGui(index) {
 	    	}
 		}
 	}
-	$("#SumRes").text("0");
-	recalcSum(0);
+	if (!isFinalMode) {
+        $("#SumRes").text("0");
+    }
+    if(!display)
+    	$("#resultFinal").hide();
+
+	if (isFinalMode){
+        if (!player2) {
+            $('#SumRes_player1').html("0");
+            $('#SumRes_player2').html("0");
+        }
+	}
+	if (!player2) {
+        recalcSum(0);
+    }
 }
 
 function setAnswer(index, answer) {
-	answer = getAnswerString(answer);
-	var el = $($("#answers").find(".answer")[index]);
-	el.empty();
-	if(sounds && (display || serverSound)) {
-		audio = new Audio('./sounds/textRichtig.mp3');
-		audio.play();
+	if(!(isFinalMode && !display)) { //not do it at final mode and controller
+	    var answer_select = ".answer";
+	    if (player2){
+	    	answer_select = '.answer_player2';
+		}
+		answer = getAnswerString(answer);
+		var el = $($("#answers").find(answer_select)[index]);
+		el.empty();
+		if(sounds && (display || serverSound)) {
+			audio = new Audio('./sounds/textRichtig.mp3');
+			audio.play();
+		}
+		el.typed({
+	        strings: [answer],
+	        typeSpeed: 10,
+	        showCursor: false,
+	        cursorChar: "",
+	        fadeOut: true,
+	        fadeOutDelay: 0,
+	    });  		
 	}
-	el.typed({
-        strings: [answer],
-        typeSpeed: 20
-    });
 }
 
 function setAnz(index, nr) {
-	var el = $($("#answers").find(".points")[index]);
-	el.text(nr);
-	if(sounds && (display || serverSound)) {
-		audio = new Audio('./sounds/zahlRichtig.mp3');
-		audio.play();
+	if(!(isFinalMode && !display)) { //not do it at final mode and controller
+	    var points_select = ".points";
+	    if (player2){
+	    	points_select = '.points_player2';
+		}
+		var el = $($("#answers").find(points_select)[index]);
+		el.text(nr);
+		if(sounds && (display || serverSound)) {
+			audio = new Audio('./sounds/zahlRichtig.mp3');
+			audio.play();
+		}
+		recalcSum(nr);
 	}
-	recalcSum(nr);
 }
 
 function recalcSum(s) {
-	$("#SumRes").text(parseFloat($("#SumRes").text())+parseFloat(s));
+	var sum_selector = '#SumRes';
+	if (isFinalMode) {
+		var p1p = 0;
+		var p2p = 0;
+		$.each($(".points"), function() {
+			var v = $(this).text();
+			if(v != "--") {
+				p1p = p1p + parseFloat(v);
+			}
+		});
+		$.each($(".points_player2"), function() {
+			var v = $(this).text();
+			if(v != "--") {
+				p2p = p2p + parseFloat(v);
+			}
+		});
+		$("#SumRes_player1").text(p1p);
+		$("#SumRes_player2").text(p2p);
+    } else {
+    	$(sum_selector).text(parseFloat($(sum_selector).text())+parseFloat(s));
+    }
 }
 
 function getAnswerString(str) {
@@ -302,7 +441,11 @@ function getAnswerString(str) {
 		str+="_";
 	}
 	anz = str.length;
-	while(str.length < 40) {
+	var maxLength = 40;
+	if (isFinalMode){
+		maxLength = 20;
+	}
+	while(str.length < maxLength) {
 		str+= " _";
 	}
 	return str;

@@ -23,18 +23,24 @@
 			<hr id="DHR" style="margin:0px; width:100%; position:relative; top:3px; border-top:1px solid black;">
 	    </div>
 	    <div class="bgColor textColor mainHight" style="display:none; position:relative; width: 1000px; margin: auto;" id="display">
-	    	<img id="schweinchenImg" style="margin-left: 200px; margin-top: 70px;" src="./img/schweinchen.jpg">
+	    	<img id="schweinchenImg" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen.jpg">
+			<img id="schweinchen1Img" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen1.jpg">
+			<img id="schweinchen2Img" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen2.jpg">
 	    	<div id="displayQuestions" class="textColor">
 	    	</div>
 	    	<div id="answers">
 	    		
 	    	</div>
 	    	<div class="noIntro" id="result" style="position:absolute; bottom:115px; right:38px; font-size: 1.5em;">
-	    		<div style="float:left; padding-right: 20px;">SUMME</div>
+	    		<div style="float:left; padding-right: 20px;" class="header_summe">SUMME</div>
 	    		<div style="float:left; font-size: 0.8em; position: relative; top: 12; left:14px; color: red; cursor:pointer;" class="controller" id="pointsToTheLeft"><i class="fa fa-chevron-left"></i></div>
 	    		<div class="noIntro" style="width:50px; float: left; text-align:right;" id="SumRes">0</div>
 	    		<div style="float:left; font-size: 0.8em; position: relative; top: 12; color: red; cursor:pointer;" class="controller" id="pointsToTheRight"><i class="fa fa-chevron-right"></i></div>
 	    	</div>
+			<div class="noIntro" id="resultFinal" style="position:absolute; bottom:115px; right:465px; font-size: 1.5em; display: none;">
+				<div class="noIntro" style="width:50px; float: left; text-align:right;" id="SumRes_player1"></div>
+				<div class="noIntro" style="width:50px; float: left; text-align:right;" id="SumRes_player2"></div>
+			</div>
 	    	<div class="noIntro footer" id="footer1" style="position:absolute; bottom:50px; width:100%; height:50px; font-size: 2em;">
 	    		<div style="position:absolute; left:5px; top: -5px;" class="pointsLeft">0</div>
 	    		<div style="position:absolute; right:5px; top: -5px;" class="pointsRight">0</div>
@@ -64,10 +70,10 @@
 						<td><b>Global</b></td>
 						<td><b>Server</b></td>
 						<td><b>Intro</b></td>
-						<td><b>Jeopardy</b></td>
 						<td><b>Schweinchen</b></td>
 						<td><b>Clear Fails</b></td>
 						<td><b>Punkte</b></td>
+						<td><b>Finalmodus</b> <input id="modeFinal" type="checkbox"> <button style="float:right;" id="finalmodusInfoBtn">Info</button></td>
 					</tr>
 					<tr>
 						<td><img id="toggleSoundImg" style="cursor:pointer;" width="35px;" src="./img/soundOn.png"></td>
@@ -81,14 +87,9 @@
 							Blackscreen: <input id="blackScreenCheck" checked="checked" type="checkbox">
 						</td>
 						<td>
-							<button id="startJeopardybtn"><i class="fa fa-play"></i> Jeopardy</button><br>
-							<button id="stopJeopardybtn"><i class="fa fa-stop"></i> Jeopardy</button><br>
-							<img width="20px;" src="./img/noSound.png"> 
-							<input id="jeopardyVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
-							<img width="20px;" src="./img/soundOn.png">
-						</td>
-						<td>
-							<button id="startScheinchenbtn"><i class="fa fa-play"></i> Schweinchen</button><br>
+							<button id="startScheinchenbtn" value="1"><i class="fa fa-play"></i> Schweinchen</button><br>
+							<button id="startScheinchenbtn2" value="2"><i class="fa fa-play"></i> Schweinchen (2x)</button><br>
+							<button id="startScheinchenbtn3" value="3"><i class="fa fa-play"></i> Schweinchen (3x)</button><br>
 							<button id="stopScheinchenbtn"><i class="fa fa-stop"></i> Schweinchen</button><br>
 							<img width="20px;" src="./img/noSound.png"> 
 							<input id="schweinchenVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
@@ -106,6 +107,24 @@
 									<td>Punkte Rechts: </td> <td><input style="width:50px;" id="mPunkteRight" type="number" value="0"></td><td><button id="newRightPoints">ok</button></td>
 								</tr>
 							</table>
+						</td>
+						<td>
+							<button id="startAnswerFailBtn"><i class="fa fa-play"></i> Antwort falsch</button><br>
+							<img width="20px;" src="./img/noSound.png"> 
+							<input id="answerFailVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
+							<img width="20px;" src="./img/soundOn.png">
+							<div>
+								<lable>Spieler 1: <input class="playerTgl finalElement" disabled="true" checked="true" type="radio" value="1" name="fmod"></lable><br>
+								<lable>Spieler 2: <input class="playerTgl finalElement" disabled="true" type="radio" value="2" name="fmod"></lable><br>
+								Frage: <select class="finalElement" disabled="true" id="finalFragenSelect">
+									<option value="0"> 1</option>
+									<option value="1"> 2</option>
+									<option value="2"> 3</option>
+									<option value="3"> 4</option>
+									<option value="4"> 5</option>
+								</select><br>
+								Alternative Antwort (0 Punkte):<br> <input class="finalElement" id="alternateAnswer" maxlength="20" disabled="true" type="text" name=""><button class="finalElement" id="alternateAnswerBtn" disabled="true">Setzten</button><button class="finalElement" id="alternateAnswerPBtn" disabled="true">0</button>
+							</div>
 						</td>
 					</tr>
 				</table>

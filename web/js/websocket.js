@@ -15,6 +15,9 @@ var ws;
 var display = true;
 var audio = null;
 var serverSound = false;
+var isFinalMode = false;
+var player2 = false;
+var runde = 1;
 
 $(document).ready(function() {
 	$("#displayBtn").click(function() {
@@ -124,7 +127,8 @@ var connectWs = function() {
 				}
 			}
 		} else if(key == "loadQuestion") {
-			loadQuestionToGui(value);
+			if(!(display && isFinalMode))
+				loadQuestionToGui(value);
 		} else if(key == "setAnswer") {
 			setAnswer(value, messageParts_a[2]);
 		} else if(key == "setAnz") {
@@ -141,14 +145,12 @@ var connectWs = function() {
 			setLeftPoints(value);
 		} else if(key == "setRightPoints") {
 			setRightPoints(value);
-		} else if(key == "startJeopardy") {
-			startJeopardy();
-		} else if(key == "stopJeopardy") {
-			stopJeopardy();
-		} else if(key == "setJeopardyVolume") {
-			jeopardyVolume = value;
-			if(jeopardy != null)
-				jeopardy.volume = jeopardyVolume;
+		} else if(key == "startAnswerFail") {
+			startAnswerFail();
+		} else if(key == "setAnswerFailVolume") {
+			answerFailVolume = value;
+			if(answerFail != null)
+				answerFail.volume = answerFailVolume;
 		} else if(key == "startSchweinchen") {
 			startSchweinchen();
 		} else if(key == "stopSchweinchen") {
@@ -161,7 +163,16 @@ var connectWs = function() {
 			if(display) {
 				$("#blackScreen").toggle();
 			}
+		} else if (key == "toggleFinalMode"){
+			setFinalMode(value);
 		}
+        else if (key == "setPlayer2ForFinalMode"){
+            setPlayer2(value);
+        }
+        else if (key == "setRunde"){
+            console.log('Set Runde to ' + value);
+            setRunde(value);
+        }
 	}
 }
 
