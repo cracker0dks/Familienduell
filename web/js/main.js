@@ -140,7 +140,8 @@ $(document).ready(function() {
 
 	$("#alternateAnswerPBtn").click(function(){
 		var is = $("#finalFragenSelect").val();
-		wsSend("setAnz", is+"###0");
+		var p =  $("#altPointsFinal").val() > 0 ? $("#altPointsFinal").val() : 0;
+		wsSend("setAnz", is+"###"+p);
 	});
 
 	$("#finalmodusInfoBtn").click(function(){
