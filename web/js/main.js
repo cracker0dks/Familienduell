@@ -45,6 +45,7 @@ $(document).ready(function() {
     $("button[id^='startScheinchenbtn']").each(function(){
         $(this).click(function() {
             var status = $(this).attr('value');
+            $("#pointMultiplicator").val(status)
             console.log('status' + status);
             wsSend("setRunde", status);
             $(this).attr("disabled", "disabled");
@@ -113,13 +114,13 @@ $(document).ready(function() {
 	});
 
 	$("#pointsToTheLeft").click(function() {
-		var points = parseFloat($(".pointsLeft").text()) + parseFloat($("#SumRes").text());
+		var points = parseFloat($(".pointsLeft").text()) + parseFloat($("#SumRes").text())*$("#pointMultiplicator").val();
 		wsSend("setLeftPoints", points);
 		$("#SumRes").text("0");
 	});
 
 	$("#pointsToTheRight").click(function() {
-		var points = parseFloat($(".pointsRight").text()) + parseFloat($("#SumRes").text());
+		var points = parseFloat($(".pointsRight").text()) + parseFloat($("#SumRes").text())*$("#pointMultiplicator").val();
 		wsSend("setRightPoints", points);
 		$("#SumRes").text("0");
 	});
