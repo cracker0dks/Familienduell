@@ -4,6 +4,8 @@
 
 Familienduell Client / Server (NodeJs Javascript)
 
+[Bilderanleitung gibt's hier](bilderanleitung)
+
 ### -A- START DES SERVERS!
 
 ___Windows___
