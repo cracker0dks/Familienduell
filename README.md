@@ -4,7 +4,7 @@
 
 Familienduell Client / Server (NodeJs Javascript)
 
-#### FÜr Bilderanleitung hier klicken: [Bilderanleitung](bilderanleitung)
+#### Für eine Bilderanleitung hier klicken: [Bilderanleitung](bilderanleitung)
 
 ### -A- START DES SERVERS!
 
