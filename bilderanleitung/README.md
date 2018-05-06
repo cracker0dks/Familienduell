@@ -7,7 +7,7 @@
 ## Step 3:
 ![3.PNG](3.PNG)
 ## Step 4:
-![4.PNG](4.PNG)
+![4.PNG](4.png)
 ## Step 5:
 ![5.PNG](5.PNG)
 ## Step 6:
