@@ -45,7 +45,7 @@ A: Das Bild ist schwarz damit man die Intromusik starten kann und die Leute (Zus
    Dies kann (Im Controller) über die Checkbox "Blackscreen", im Bereich "Intro" kontrolliert werden.
 
 Q: Wie funktioniert das mit 2 oder mehr Geräten?   
-A: Verwende dazu einfach eine Externe IP des Servers (aus dem Serverfenster) zum Verbinden von einem anderen Gerät aus
+A: Alle Geräte müssen im gleichen Netzwerk sein. Dann verwende einfach eine Externe IP des Servers (aus dem Serverfenster) zum verbinden von einem anderen Gerät aus.
 
 Q: Läuft der Server mit nodeJs auch unter Linux / Läuft der Python Server auch unter Windows?    
 A: Ja, dafür müssen jedoch zunächst die etsprechenden Abhänigkeiten installiert werden.
