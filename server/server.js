@@ -1,9 +1,41 @@
 //Websocket Server <<<<<<<<<<<<<<
-var wsPort = 8080;
+var wsPort = 8081;
+var webPort = 8080;
 var subscribers = [];
-var WebSocketServer = require('ws').Server
-  , wss = new WebSocketServer({port: wsPort});
+var WebSocketServer = require('ws').Server;
+var wss = new WebSocketServer({port: wsPort});
+var http = require('http');
+var url = require('url');
+var path = require('path');
 var fs = require('fs');
+var baseDirectory = '../web/'
+
+http.createServer(function (request, response) {
+    try {
+    	var rurl = request.url;
+    	if(rurl=="/") {
+    		rurl = "/index.html";
+    	}
+        var requestUrl = url.parse(rurl)
+
+        // need to use path.normalize so people can't access directories underneath baseDirectory
+        var fsPath = baseDirectory+path.normalize(requestUrl.pathname);
+
+        var fileStream = fs.createReadStream(fsPath)
+        fileStream.pipe(response)
+        fileStream.on('open', function() {
+             response.writeHead(200)
+        })
+        fileStream.on('error',function(e) {
+             response.writeHead(404)     // assume the file doesn't exist
+             response.end()
+        })
+   } catch(e) {
+        response.writeHead(500)
+        response.end()     // end the response so browsers don't hang
+        console.log(e.stack)
+   }
+}).listen(webPort)   
 
 wss.on('connection', function(ws) {
 	subscribers.push(ws);
@@ -64,11 +96,15 @@ function broadcastMessage(clientId, msg) {
 	}
 }
 
-console.log("\nWebsocket Server on Port:"+wsPort);
-console.log("\nYou have this IPs to connect to:");
-console.log("From this PC: 127.0.0.1 or localhost");
-console.log("\n---From different networks---");
+console.log("\nWebsocket server running on Port:"+wsPort);
+console.log("Webserver running on Port:"+webPort);
+
+console.log("\n---Verbinden von diesem PC---");
+console.log(" Browser öffnen und zu Adresse: http://127.0.0.1:"+webPort+" surfen!");
+
+console.log("\n---Adressen zum verbinden von anderen Geräten---");
 getLocalIp()
+
 console.log("\n\n------------------------------");
 console.log("\n---SERVER IS UP AND RUNNING---");
 console.log("\n------------------------------");
@@ -114,10 +150,10 @@ Object.keys(ifaces).forEach(function (ifname) {
 
     if (alias >= 1) {
       // this single interface has multiple ipv4 addresses
-      console.log(ifname + ':' + alias, iface.address);
+      console.log(" http://"+iface.address+":"+webPort);
     } else {
       // this interface has only one ipv4 adress
-      console.log(ifname, iface.address);
+      console.log(" "+ifname+": ", "http://"+iface.address+":"+webPort);
     }
     ++alias;
   });

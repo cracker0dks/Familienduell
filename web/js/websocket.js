@@ -1,13 +1,7 @@
 var retrys = 0;
-var ip = localStorage.getItem("ip");
-var viewOnly = false;
 
-if(window.location.href.indexOf("ip")!==-1) {
-	ip = window.location.href.split("ip=")[1];
-	viewOnly = true;
-}
-
-var WSPort = 8080;
+var WSPort = 8081;
+var IP = (location.host +"").split(":")[0];
 var isWebsocketConnected = false;
 var connTimer = null;
 var sounds = true;
@@ -18,6 +12,12 @@ var serverSound = false;
 var isFinalMode = false;
 var player2 = false;
 var runde = 1;
+
+var viewOnly = false;
+if(window.location.href.indexOf("viewonly")!==-1) {
+	ip = window.location.href.split("ip=")[1];
+	viewOnly = true;
+}
 
 $(document).ready(function() {
 	$("#displayBtn").click(function() {
@@ -66,12 +66,12 @@ $(document).ready(function() {
 	
 	
 var connectWs = function() {
-	ws = new WebSocket('ws://'+ip+':'+WSPort);
+	ws = new WebSocket('ws://'+IP+':'+WSPort);
 
 	ws.onopen = function()
 	{
 		$("#notConnected").hide();
-		$("#connected").text("Verbunden mit: "+'ws://'+ip+':'+WSPort);
+		$("#connected").text("Verbunden mit: "+'ws://'+IP+':'+WSPort);
 		$("#connected").show();
 		isWebsocketConnected = true;
 		loadQuestions();

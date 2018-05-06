@@ -1,42 +1,155 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Familienduell</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="de">
+	<head>
+	<title>Familien Duell</title>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/jquery-ui-1.10.4.min.js"></script>
+	<script type="text/javascript" src="./js/websocket.js"></script>
+	<script type="text/javascript" src="./js/typed.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/components.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
-	<script type="text/javascript">
-		var ip = null;
-		$(document).ready(function() {
-			if(typeof(Storage) !== "undefined") {
-				if(window.location.href.indexOf("ip")!==-1) {
-					var ip = window.location.href.split("ip=")[1];
-					$("#ip").val(ip);
-				} else if(localStorage.getItem("ip") == null) {
-			    	$("#ip").val("127.0.0.1");
-			    } else {
-			    	$("#ip").val(localStorage.getItem("ip"));
-			    }
-			} else {
-			    alert("Bitte einen neueren Browser verwenden!");
-			}
+	</head>
+	<body style="padding:10px;">
+		<div id="allContent">
+			<div id="startDiv" style="width: 500px; margin: auto;">
+				<h1 style="font-size: 5em;">Familien Duell</h1>
+				<button id="displayBtn" style="font-size: 2em; width:500px;"><i class="fa fa-desktop"></i> DISPLAY</button><br>
+				<button id="controllerBtn" style="font-size: 2em; width:500px; margin-top:2px;"><i class="fa fa-keyboard-o"></i> CONTROLLER</button>
+				<hr id="DHR" style="margin:0px; width:100%; position:relative; top:3px; border-top:1px solid black;">
+		    </div>
+		    <div class="bgColor textColor mainHight" style="display:none; position:relative; width: 1000px; margin: auto;" id="display">
+		    	<img id="schweinchenImg" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen.jpg">
+				<img id="schweinchen1Img" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen1.jpg">
+				<img id="schweinchen2Img" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen2.jpg">
+		    	<div id="displayQuestions" class="textColor">
+		    	</div>
+		    	<div id="answers">
+		    		
+		    	</div>
+		    	<div class="noIntro" id="result" style="position:absolute; bottom:115px; right:38px; font-size: 1.5em;">
+		    		<div style="float:left; padding-right: 20px;" class="header_summe">SUMME</div>
+		    		<div style="float:left; font-size: 0.8em; position: relative; top: 12; left:14px; color: red; cursor:pointer;" class="controller" id="pointsToTheLeft"><i class="fa fa-chevron-left"></i></div>
+		    		<div class="noIntro" style="width:50px; float: left; text-align:right;" id="SumRes">0</div>
+		    		<div style="float:left; font-size: 0.8em; position: relative; top: 12; color: red; cursor:pointer;" class="controller" id="pointsToTheRight"><i class="fa fa-chevron-right"></i></div>
+		    	</div>
+				<div class="noIntro" id="resultFinal" style="position:absolute; bottom:115px; right:465px; font-size: 1.5em; display: none;">
+					<div class="noIntro" style="width:50px; float: left; text-align:right;" id="SumRes_player1"></div>
+					<div class="noIntro" style="width:50px; float: left; text-align:right;" id="SumRes_player2"></div>
+				</div>
+		    	<div class="noIntro footer" id="footer1" style="position:absolute; bottom:50px; width:100%; height:50px; font-size: 2em;">
+		    		<div style="position:absolute; left:5px; top: -5px;" class="pointsLeft">0</div>
+		    		<div style="position:absolute; right:5px; top: -5px;" class="pointsRight">0</div>
+		    	</div>
+		    	<div class="noIntro footer" id="footer2" style="position:absolute; bottom:108px; width:100%; height:5px;"></div>
+		    	<div class="xmarker noIntro" style="position: absolute; bottom: 0px; left: 34; font-size: 2em; background: #525463; height: 50px; padding-left: 12px; padding-right: 12px; color: rgb(127, 115, 115);" ></div>
+		    	<div class="xmarker noIntro" style="position: absolute; bottom: 0px; right: 34; font-size: 2em; background: #525463; height: 50px; padding-left: 12px; padding-right: 12px; color: rgb(127, 115, 115);" ></div>
+		    	<img style="position: absolute; top: 0px;" class="intro mainHight" src="./img/logo.png">
+		    </div>
+			<div style="display:none;" class="controller">
+				<div id="editQuestionsDiv" style="display:none; background: rgba(214, 205, 205, 0.95); padding-left:20px; position: absolute; top: 0px; width: 99%; min-height: 100%;">
+					<i id="closeFragenEditorIcon" style="position: fixed; right: 30px; top: 10px; font-size: 1.2em; cursor:pointer;" class="fa fa-caret-square-o-down"></i>
+					<h1 style="margin-left:50px;">Frageneditor</h1>
+					<div>
+						<ul id="fragenListe">
 
-			$("#startButton").click(function() {
-				localStorage.setItem("ip", $("#ip").val());
-				window.location.href = "duell.html";
-				$("#not").show();
-			});
-		});
-	</script>
-</head>
-<body>
-<div id="startDiv" style="width: 500px; margin: auto;">
-			<h1 style="font-size: 5em;">Familien Duell</h1>
-			Server IP-Adresse: <input id="ip" type="text"> <button id="startButton">Start</button>
-			<div style="display:none" id="not">
-				<a href="duell.html">Falls die Weiterleitung nicht funktioniert, bitte hier klicken!</a>
+						</ul>
+					</div>
+					<div >
+						<button style="margin-left:50px;" id="addNewQuestionBtn">Neue Frage hinzufügen!</button>
+						<button style="margin-left:50px; position:fixed; top: 10px; right: 100; font-size: 2em;" id="saveNewQuestions">Speichern!</button>		
+					</div>
+				</div><br><br><br>
+				<div id="buttonsDownUnder">
+					<table border="1">
+						<tr>
+							<td><b>Global</b></td>
+							<td><b>Server</b></td>
+							<td><b>Intro</b></td>
+							<td><b>Schweinchen</b></td>
+							<td><b>Optionen</b></td>
+							<td><b>Finalmodus</b> <input id="modeFinal" type="checkbox"> <button style="float:right;" id="finalmodusInfoBtn">Info</button></td>
+						</tr>
+						<tr>
+							<td><img id="toggleSoundImg" style="cursor:pointer;" width="35px;" src="./img/soundOn.png"></td>
+							<td><img id="serverSoundImg" style="cursor:pointer;" width="35px;" src="./img/noSound.png"></td>
+							<td>
+								<button id="startIntroBtn"><i class="fa fa-play"></i> Intro!</button><br>
+								<button id="stopIntroBtn"><i class="fa fa-stop"></i> Intro!</button><br>
+								<img width="20px;" src="./img/noSound.png"> 
+								<input id="introVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
+								<img width="20px;" src="./img/soundOn.png"><br>
+								Blackscreen: <input id="blackScreenCheck" checked="checked" type="checkbox">
+							</td>
+							<td>
+								Multiplikator: <input id="pointMultiplicator" type="number" name="" value="1" style="width: 50px;"><br>
+								<button id="startScheinchenbtn" value="1"><i class="fa fa-play"></i> Schweinchen</button><br>
+								<button id="startScheinchenbtn2" value="2"><i class="fa fa-play"></i> Schweinchen (2x)</button><br>
+								<button id="startScheinchenbtn3" value="3"><i class="fa fa-play"></i> Schweinchen (3x)</button><br>
+								<button id="stopScheinchenbtn"><i class="fa fa-stop"></i> Schweinchen</button><br>
+								<img width="20px;" src="./img/noSound.png"> 
+								<input id="schweinchenVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
+								<img width="20px;" src="./img/soundOn.png">
+							</td>
+							<td>
+								<button id="clearAllFailsBtn">Clear all Fails!</button><br><br>
+								<table>
+									<tr>
+										<td>Punkte Links: </td> <td><input style="width:50px;" id="mPunkteLeft" type="number" value="0"></td><td><button id="newLeftPoints">ok</button></td>
+									</tr>
+									<tr>
+										<td>Punkte Rechts: </td> <td><input style="width:50px;" id="mPunkteRight" type="number" value="0"></td><td><button id="newRightPoints">ok</button></td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<button id="startAnswerFailBtn"><i class="fa fa-play"></i> Antwort falsch</button><br>
+								<img width="20px;" src="./img/noSound.png"> 
+								<input id="answerFailVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
+								<img width="20px;" src="./img/soundOn.png">
+								<div>
+									<lable>Spieler 1: <input class="playerTgl finalElement" disabled="true" checked="true" type="radio" value="1" name="fmod"></lable><br>
+									<lable>Spieler 2: <input class="playerTgl finalElement" disabled="true" type="radio" value="2" name="fmod"></lable><br>
+									Frage: <select class="finalElement" disabled="true" id="finalFragenSelect">
+										<option value="0"> 1</option>
+										<option value="1"> 2</option>
+										<option value="2"> 3</option>
+										<option value="3"> 4</option>
+										<option value="4"> 5</option>
+									</select><br>
+									Alternative Antwort:<br> <input class="finalElement" id="alternateAnswer" maxlength="20" disabled="true" type="text" name=""><button class="finalElement" id="alternateAnswerBtn" disabled="true">setzen</button><br><input type="number" class="finalElement" id="altPointsFinal" disabled="true" placeholder="Alt. Punkte" value=""><button class="finalElement" id="alternateAnswerPBtn" disabled="true">setzen</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<br>
+					<table>
+						<tr>
+							<td><b>Fragenliste:</b><br>
+								<select style="min-width: 400px;" size="5" id="questionsSelcet">
+
+								</select>
+							</td>
+							<td style="font-size:3em; padding-top: 25px;">
+								<i id="upQicon" class="fa fa-sort-desc upDownArrow"></i><br>
+								<i id="downQicon" class="fa fa-sort-asc upDownArrow"></i>
+							</td>
+						</tr>
+					</table>
+					<button id="openFragenEditorBtn"><i class="fa fa-tasks"></i> Frageneditor</button>
+					<button id="printQuestions"><i class="fa fa-print"></i></button>
+					
+				</div>
 			</div>
-</div>
-</body>
+			<div id="notConnected" style="position:absolute; left:0px; top:0px; padding:5px;"><img width="50px" src="./img/notConnected.png"></div>
+			<div id="connected" style="position:absolute; left:0px; top:0px; padding:5px; display:none;"></div>
+			<div id="blackScreen" style="display:none; position:absolute; left:0px; top:0px; width:100%; height:100%; background:black;"></div>
+		</div>
+		<div id="printScreen" style="display:none; position:absolute; left:0px; top:0px; width:100%; height:100%; background:white;">
+			<div id="printDiv"></div>
+		</div>
+	</body>
 </html>
