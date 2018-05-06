@@ -50,18 +50,15 @@ Q: Warum ist das Display zu Beginn schwarz, und wie kann ich das ändern?
 A: Das Bild ist schwarz damit man die Intromusik starten kann und die Leute (Zuschauer) nicht schon vorher wissen was auf sie zukommt.
    Dies kann (Im Controller) über die Checkbox "Blackscreen", im Bereich "Intro" kontrolliert werden.
 
-Q: Wie funktioniert das mit 2 Rechnern?   
+Q: Wie funktioniert das mit 2 oder mehr Geräten?   
 A: Step by Step: 
-	PC1 = controller und Server
-	PC2 = display
 
-    1. PC 1 muss im gleichen Netztwerk  (Wlan / LAN) sein wie PC 2.
-    2. Kopiere alle Dateien auf beide PCs
-    3. starte den Server auf PC1
-    4. Starte den controller auf PC1 (So wie sonst auch immer mit IP: 127.0.0.1)
-    5. Nun musst du die LAN IP-Adresse von PC1 herrausfinden. Anleitung hier: http://www.tippscout.de/windows-xp-ip-adresse-des-computers-ermitteln-und-herausfinden_tipp_2676.html
-    6. Nun startest du das Display auf pc2 trägst aber statt "127.0.0.1" die IP-Adresse von pc1 ein (Die Adresse sollte mit "192.168." beginnen)
-    7. Los gehts :)
+    1. Alle Geräte müssen sich im selben Netzwerk (LAN/W-Lan) befinden 
+    2. Kopiere alle Dateien auf alle Geräte
+    3. Starte den Server
+    4. Die IP Adresse des Servers wird nach dem Start im Serverfenster unter "From different networks" angezeigt. (sollt mit 192.168. beginnen)
+    5. Starte den Controller & Displays auf beliebigen Geräten, aber verwende beim verbinden jetzt die Server IP (Nicht 127.0.0.1)
+    6. Los gehts :)
     
 Q: Läuft der Server mit nodeJs auch unter Linux / Läuft der Python Server auch unter Windows?    
 A: Ja, dafür müssen jedoch zunächst die etsprechenden Abhänigkeiten installiert werden.

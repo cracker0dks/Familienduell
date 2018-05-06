@@ -64,7 +64,14 @@ function broadcastMessage(clientId, msg) {
 	}
 }
 
-console.log("Websocket Server running at ws://127.0.0.1:"+wsPort);
+console.log("\nWebsocket Server on Port:"+wsPort);
+console.log("\nYou have this IPs to connect to:");
+console.log("From this PC: 127.0.0.1 or localhost");
+console.log("\n---From different networks---");
+getLocalIp()
+console.log("\n\n------------------------------");
+console.log("\n---SERVER IS UP AND RUNNING---");
+console.log("\n------------------------------");
 
 function writeInFile(filename, content, callback) {
 	console.log("going to read file:"+filename);
@@ -92,4 +99,27 @@ function readFile(filename, callback) {
 	});
 }
 
+function getLocalIp() {
+    var os = require('os');
+var ifaces = os.networkInterfaces();
 
+Object.keys(ifaces).forEach(function (ifname) {
+  var alias = 0;
+
+  ifaces[ifname].forEach(function (iface) {
+    if ('IPv4' !== iface.family || iface.internal !== false) {
+      // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+      return;
+    }
+
+    if (alias >= 1) {
+      // this single interface has multiple ipv4 addresses
+      console.log(ifname + ':' + alias, iface.address);
+    } else {
+      // this interface has only one ipv4 adress
+      console.log(ifname, iface.address);
+    }
+    ++alias;
+  });
+});
+}
