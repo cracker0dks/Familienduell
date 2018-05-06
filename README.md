@@ -53,11 +53,11 @@ A: Ja, dafür müssen jedoch zunächst die etsprechenden Abhänigkeiten installi
 Q: Gibt es eine Funktion um Leuten über einen Link direkt das Zuschauen zu ermöglichen?   
 A: Ja. Der Link lautet: http://SERVERURL/PFAD/index.html?viewonly=true (SERVERURL und PFAD anpassen!)
 
+Q: Ich erhalten im Serverfenster den Fehler: Error: listen EADDRINUSE   
+A: Eine andere Anwendung blockiert bereits den Port. Beenden diese und starte den Server erneut
+
 Q: Ich habe sonstige Fehler bei (Anzeige, Verbindungsaufbau, Anwendungsverhalten)   
 A: Falls du einen anderen Browser als Google Chrome verwendest, installiere Chrome.
-
-Q: Ich erhalten im Serverfenster den Fehler: Error: listen EADDRINUSE 
-A: Eine andere Anwendung blockiert bereits den Port. Beenden diese starte den Server erneut
 
 Q: Ich habe sonstige Probleme oder Fragen...
 A: Fragen, Fehlermeldungen, Beschwerden per Mail an: rofl256@googlemail.com
