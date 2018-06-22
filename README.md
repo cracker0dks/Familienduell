@@ -34,7 +34,7 @@ ___Mac___
 
 ### -C- Start des Displays
 
-1. In einem neuen Browserfenster verbinden und auf display klicken.
+1. In einem neuen Browserfenster/tab verbinden und auf display klicken.
 
 
 ---------------------------
