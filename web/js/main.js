@@ -490,20 +490,11 @@ function addNewQuestion(frage) {
 			'<td>Frage:</td><td><input class="questionIn" type="text"></td>'+
 		'</tr><tr>'+
 			'<td>Kürzel:</td><td><input class="questionKIn" type="text"></td>'+
-		'</tr><tr class="antTr">'+
-			'<td>Antwort 1:</td><td><input class="antwortInp" type="text"><input class="anz" type="number" min="1" max="100"></td>'+
-		'</tr><tr class="antTr">'+
-			'<td>Antwort 2:</td><td><input class="antwortInp" type="text"><input class="anz" type="number" min="1" max="100"></td>'+
-		'</tr><tr class="antTr">'+
-			'<td>Antwort 3:</td><td><input class="antwortInp" type="text"><input class="anz" type="number" min="1" max="100"></td>'+
-		'</tr><tr class="antTr">'+
-			'<td>Antwort 4:</td><td><input class="antwortInp" type="text"><input class="anz" type="number" min="1" max="100"></td>'+
-		'</tr><tr class="antTr">'+
-			'<td>Antwort 5:</td><td><input class="antwortInp" type="text"><input class="anz" type="number" min="1" max="100"></td>'+
-		'</tr><tr class="antTr">'+
-			'<td>Antwort 6:</td><td><input class="antwortInp" type="text"><input class="anz" type="number" min="1" max="100"></td>'+
-		'</tr><tr>'+
+		'</tr>'+
 	'</table></li>');
+	for(var i=1;i<7;i++) {
+		newQHtml.find("table").append('<tr class="antTr"><td>Antwort '+i+':</td><td><input class="antwortInp" type="text"><input class="anz" type="number" min="1" max="100"></td></tr>');
+	}
 	if(frage != null) {
 		newQHtml.find(".questionIn").val(frage["frage"]);
 		newQHtml.find(".questionKIn").val(frage["kuerzel"]);
