@@ -10,7 +10,7 @@ ___Windows___
 
 1. Im Ordner "server" die Datei StartServer.bat doppelklicken.
    * Im Fenster das jetzt erscheint sollte: "SERVER IS UP AND RUNNING" stehen.
-   * Falls die Firewall fragt, solltest du die Anfrage zulassen da sonst der client nicht verbinden kann.
+   * Falls die Firewall fragt, solltest du die Anfrage zulassen da sonst der Client nicht verbinden kann.
 
 ___Mac___
 
@@ -34,7 +34,7 @@ ___Mac___
 
 ### -C- Start des Displays
 
-1. In einem neuen Browserfenster/tab verbinden und auf display klicken.
+1. In einem neuen Browserfenster/tab verbinden und auf "Display" klicken.
 
 
 ---------------------------
@@ -54,7 +54,7 @@ Q: Gibt es eine Funktion um Leuten √ºber einen Link direkt das Zuschauen zu erm√
 A: Ja. Der Link lautet: http://SERVERURL/PFAD/index.html?viewonly=true (SERVERURL und PFAD anpassen!)
 
 Q: Ich erhalten im Serverfenster den Fehler: Error: listen EADDRINUSE   
-A: Eine andere Anwendung blockiert bereits den Port. Beenden diese und starte den Server erneut
+A: Eine andere Anwendung blockiert bereits den Port. Beende diese und starte den Server erneut
 
 Q: Ich habe sonstige Fehler bei (Anzeige, Verbindungsaufbau, Anwendungsverhalten)   
 A: Falls du einen anderen Browser als Google Chrome verwendest, installiere Chrome.
