@@ -240,6 +240,9 @@ function stopSchweinchen() {
 function hideIntro() {
 	$(".noIntro").show();
 	$(".intro").hide();
+	if(!$("#modeFinal").is(":checked")) {
+		$("#resultFinal").hide();
+	}
 	if(intro) {
 		intro.pause();
 	}
