@@ -306,7 +306,8 @@ function loadQuestionToGui(index) {
 		} else {
             $("#displayQuestions").show();
 		}
-		for(var i=0;i<fragen[index]["antworten"].length;i++) {
+		var answerLength = isFinalMode&&display ? 5 : fragen[index]["antworten"].length;
+		for(var i=0;i<answerLength;i++) {
 			if(fragen[index]["antworten"][i]["antwort"] != "") {
                 if (!isFinalMode) {
                     var oneLine = $('<div style="height:55px">' +
