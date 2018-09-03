@@ -345,13 +345,17 @@ function loadQuestionToGui(index) {
 	    					if (isFinalMode){
 		    					is = $("#finalFragenSelect").val();
 		    				}
-	    					wsSend("setAnswer", is+"###"+frage["antworten"][is2]["antwort"]);
+							if($(this).find(".markOnHover").length>0) { //Dont send twice
+								wsSend("setAnswer", is+"###"+frage["antworten"][is2]["antwort"]);
+							}
 	    				});
 	    				oneLine.find(".points").click(function() {
 	    					if (isFinalMode){
 		    					is = $("#finalFragenSelect").val();
 		    				}
-	    					wsSend("setAnz", is+"###"+frage["antworten"][is2]["anz"]);
+							if($(this).find(".markOnHover").length>0) { //Dont send twice
+								wsSend("setAnz", is+"###"+frage["antworten"][is2]["anz"]);
+							}
 	    				});
 	    			})();
 	    		}
