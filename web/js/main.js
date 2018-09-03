@@ -395,7 +395,7 @@ function setAnswer(index, answer) {
 		}
 		el.typed({
 	        strings: [answer],
-	        typeSpeed: 10,
+	        typeSpeed: 1,
 	        showCursor: false,
 	        cursorChar: "",
 	        fadeOut: true,
