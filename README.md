@@ -59,7 +59,7 @@ A: Eine andere Anwendung blockiert bereits den Port. Beende diese und starte den
 Q: Ich habe sonstige Fehler bei (Anzeige, Verbindungsaufbau, Anwendungsverhalten)   
 A: Falls du einen anderen Browser als Google Chrome verwendest, installiere Chrome.
 
-Sonstige Fragen, Fehlermeldungen, Beschwerden oder auch Spenden (Paypal) per Mail an: raphael.fritsch[at]gmx.de
+Sonstige Fragen, Fehlermeldungen, Beschwerden oder auch Spenden (Paypal) per Mail an: raphael.fritsch@gmx.de
 
 ---------------------------
 
