@@ -181,7 +181,7 @@ function setLeftPoints(newPoints) {
 	$(".pointsLeft").text(newPoints);
 	$("#mPunkteLeft").val(newPoints);
 	if(sounds && (display || serverSound)) {
-		audio = new Audio('./sounds/zahlRichtig.mp3');
+		audio = new Audio('./sounds/zahlRichtig.ogg');
 		audio.play();
 	}
 }
@@ -190,14 +190,14 @@ function setRightPoints(newPoints) {
 	$(".pointsRight").text(newPoints);
 	$("#mPunkteRight").val(newPoints);
 	if(sounds && (display || serverSound)) {
-		audio = new Audio('./sounds/zahlRichtig.mp3');
+		audio = new Audio('./sounds/zahlRichtig.ogg');
 		audio.play();
 	}
 }
 
 function startAnswerFail() {
 	if(sounds && (display || serverSound)) {
-		answerFail = new Audio('./sounds/failFinal.mp3');
+		answerFail = new Audio('./sounds/failFinal.ogg');
 		answerFail.volume = answerFailVolume;
 		answerFail.play();
 	}
@@ -216,7 +216,7 @@ function startSchweinchen() {
 	$("#displayQuestions").hide();
 	
 	if(sounds && (display || serverSound)) {
-		schweinchen = new Audio('./sounds/schweinchen.wav');
+		schweinchen = new Audio('./sounds/schweinchen.ogg');
 		schweinchen.volume = schweinchenVolume;
 		schweinchen.play();
 	}
@@ -252,7 +252,7 @@ function showIntro() {
 	$(".noIntro").hide();
 	$(".intro").show();
 	if(sounds && (display || serverSound)) {
-		intro = new Audio('./sounds/intro.mp3');
+		intro = new Audio('./sounds/intro.ogg');
 		intro.volume = introVolume;
 		intro.play();
 	}
@@ -390,7 +390,7 @@ function setAnswer(index, answer) {
 		var el = $($("#answers").find(answer_select)[index]);
 		el.empty();
 		if(sounds && (display || serverSound)) {
-			audio = new Audio('./sounds/textRichtig.mp3');
+			audio = new Audio('./sounds/textRichtig.ogg');
 			audio.play();
 		}
 		el.typed({
@@ -413,7 +413,7 @@ function setAnz(index, nr) {
 		var el = $($("#answers").find(points_select)[index]);
 		el.text(nr);
 		if(sounds && (display || serverSound)) {
-			audio = new Audio('./sounds/zahlRichtig.mp3');
+			audio = new Audio('./sounds/zahlRichtig.ogg');
 			audio.play();
 		}
 		recalcSum(nr);
