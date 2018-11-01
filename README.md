@@ -59,11 +59,11 @@ A: Eine andere Anwendung blockiert bereits den Port. Beende diese und starte den
 Q: Ich habe sonstige Fehler bei (Anzeige, Verbindungsaufbau, Anwendungsverhalten)   
 A: Falls du einen anderen Browser als Google Chrome verwendest, installiere Chrome.
 
-Q: Ich habe sonstige Probleme oder Fragen...   
-A: Fragen, Fehlermeldungen, Beschwerden per Mail an: rofl256@googlemail.com
+Sonstige Fragen, Fehlermeldungen, Beschwerden oder auch Spenden (Paypal) per Mail an: raphael.fritsch@gmx.de
+
 ---------------------------
 
-Programmierung: cracker aka rofl256
+Programmierung: cracker
 Unterstützt durch: DiggerTigger, Anni & Naseile
 
 Danke auch an: 
