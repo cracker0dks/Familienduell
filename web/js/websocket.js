@@ -102,7 +102,7 @@ var connectWs = function() {
 			if($(".marker"+value).css("color") == "rgb(66, 66, 66)") {
 				$(".marker"+value).css("color","rgb(211, 16, 16)");
 				if(sounds && (display || serverSound)) {
-					audio = new Audio('./sounds/fail.mp3');
+					audio = new Audio('./sounds/fail.ogg');
 					audio.play();
 				}
 			} else {
