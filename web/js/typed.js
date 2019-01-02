@@ -139,6 +139,8 @@
                 // Check if there is some text in the element, if yes start by backspacing the default message
                 if (elContent.length == 0) {
                     self.typewrite(self.strings[self.sequence[self.arrayPos]], self.strPos);
+                } else if (self.options && self.options.overwrite) {
+                    self.typewrite(self.strings[self.sequence[self.arrayPos]], self.strPos);				
                 } else {
                     self.backspace(elContent, elContent.length);
                 }
@@ -165,13 +167,17 @@
             this.init();
         },
 
-        // pass current string state to each function, types 1 char per call
-        typewrite: function(curString, curStrPos) {
+        // pass current string state to each function, types 1 char per call, if overwrite is true the existing string will be replaced char by char
+        typewrite: function(curString, curStrPos, curOverwritePos) {
             // exit when stopped
             if (this.stop === true) {
                 return;
             }
 
+			if (!curOverwritePos) {
+				curOverwritePos = curStrPos;
+			}
+			
             if (this.fadeOut && this.el.classList.contains(this.fadeOutClass)) {
                 this.el.classList.remove(this.fadeOutClass);
                 this.cursor.classList.remove(this.fadeOutClass);
@@ -263,6 +269,9 @@
                         // start typing each new char into existing string
                         // curString: arg, self.el.html: original text inside element
                         var nextString = curString.substr(0, curStrPos + 1);
+						if (self.options && self.options.overwrite) {
+							nextString += self.el.textContent.substr(curOverwritePos + 1);
+						}
                         if (self.attr) {
                             self.el.setAttribute(self.attr, nextString);
                         } else {
@@ -277,8 +286,9 @@
 
                         // add characters one by one
                         curStrPos++;
+                        curOverwritePos++;
                         // loop the function
-                        self.typewrite(curString, curStrPos);
+                        self.typewrite(curString, curStrPos, curOverwritePos);
                     }
                     // end of character pause
                 }, charPause);
@@ -436,7 +446,9 @@
             var self = this;
             clearInterval(self.timeout);
             var id = this.el.getAttribute('id');
-            this.el.textContent = '';
+			if (!self.options || !self.options.overwrite) {
+				this.el.textContent = '';
+			}
             if (typeof this.cursor !== 'undefined' && typeof this.cursor.parentNode !== 'undefined') {
                 this.cursor.parentNode.removeChild(this.cursor);
             }
@@ -486,6 +498,8 @@
         backSpeed: 0,
         // shuffle the strings
         shuffle: false,
+		// existing text will be overwritten instead of removing it first
+        overwrite: false,
         // time before backspacing
         backDelay: 500,
         // Fade out instead of backspace

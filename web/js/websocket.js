@@ -21,6 +21,13 @@ if(window.location.href.indexOf("viewonly")!==-1) {
 
 $(document).ready(function() {
 	$("#displayBtn").click(function() {
+		if (this.requestFullScreen) {
+			this.requestFullScreen();
+		} else if (this.mozRequestFullScreen) {
+			this.mozRequestFullScreen();
+		} else if (this.webkitRequestFullScreen) {
+			this.webkitRequestFullScreen();
+		}
 		$("#startDiv").hide();
 		$("#display").show();
 		$(".controller").hide();
@@ -92,18 +99,18 @@ var connectWs = function() {
 		var key = messageParts_a[0];
 		var value = messageParts_a[1];
 		if(key =="setFail") {
-			if($(".marker"+value).css("color") == "rgb(127, 115, 115)") {
+			if($(".marker"+value).css("color") == "rgb(66, 66, 66)") {
 				$(".marker"+value).css("color","rgb(211, 16, 16)");
 				if(sounds && (display || serverSound)) {
-					audio = new Audio('./sounds/fail.ogg');
+					audio = new Audio('./sounds/fail.mp3');
 					audio.play();
 				}
 			} else {
-				$(".marker"+value).css("color","rgb(127, 115, 115)");
+				$(".marker"+value).css("color","rgb(66, 66, 66)");
 			}
 		} else if(key == "clearAllFailsBtn") {
 			$.each($(".xmarker").find("span"), function() {
-				$(this).css("color","rgb(127, 115, 115)");
+				$(this).css("color","rgb(66, 66, 66)");
 			});
 		} else if(key == "toggleSound") {
 			if(sounds) {
@@ -147,6 +154,14 @@ var connectWs = function() {
 			setRightPoints(value);
 		} else if(key == "startAnswerFail") {
 			startAnswerFail();
+		} else if(key == "startAnswerDuplicate") {
+			startAnswerDuplicate();
+		} else if(key == "showTimer") {
+			showTimer();
+		} else if(key == "startTimer") {
+			startTimer();
+		} else if(key == "stopTimer") {
+			stopTimer();
 		} else if(key == "setAnswerFailVolume") {
 			answerFailVolume = value;
 			if(answerFail != null)
@@ -160,8 +175,13 @@ var connectWs = function() {
 			if(schweinchen != null)
 				schweinchen.volume = schweinchenVolume;
 		} else if(key == "toggleBlackScreen") {
-			if(display) {
-				$("#blackScreen").toggle();
+			if (display) {
+				if ($("#blackScreen").css("display") === "none") {
+					$("#blackScreen").fadeIn(500);
+				} else {
+					$("#blackScreen").fadeOut(6000);
+				}
+				// $("#blackScreen").toggle();
 			}
 		} else if (key == "toggleFinalMode"){
 			setFinalMode(value);

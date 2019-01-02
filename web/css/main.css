@@ -1,11 +1,27 @@
+body {
+	font-family: monospace;
+	background: url(../img/background.jpg) no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+	display: flex;
+	align-items: center; /* Vertikale Zentrierung */
+	justify-content: center; /* Horizontale Zentrierung */
+}
+
+#allContent {
+	position: relative;
+	
+}
+
 .textColor  {
-    color:#aeb130;
+    color:#ddff06;
     font-weight:bold;
     font-size: 1.5em;
 }
 
 .bgColor{
-    background:#525463;
+    background:#000000;
 }
 
 .antwortInp, .questionIn, .questionKIn {
@@ -26,28 +42,93 @@
 	color:gray;
 }
 
+.xmarker {
+	font-family: Verdana, Helvetica, sans-serif;
+	font-weight: bold;
+	z-index: 3;
+	box-shadow: 3px 5px 35px rgba(0, 0, 0, 0.65);
+	border: 2px #595959 solid;
+	border-radius: 2px;
+	text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.15), 1px 1px 1px rgba(255, 255, 255, 0.20);
+	font-size: 2em;
+	background: #595959;
+	height: 56px;
+	padding-left: 12px;
+	padding-right: 12px;
+	color: rgb(66, 66, 66);
+	/* box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.65), 0 5px 5px -5px rgba(0, 0, 0, 0.65); */
+}
+
 .noIntro {
 	display:none;
 }
 
 .footer {
-	background:#aeb130;
-	color:rgb(100, 100, 100);
+	background:#ddff06;
+	color: #000000;
+}
+
+#buttonsDownUnder {
+	background: #ffffff;
+	padding: 20px;
+	margin-top: 70px;
+	box-shadow: 3px 5px 35px rgba(0, 0, 0, 0.65);
+}
+
+#buttonsDownUnder td{
+	padding: 5px;
 }
 
 .mainHeight {
-	height: 530px;
+	position: relative;
+	width: 1020px;
+	height: 520px;
+	margin: auto;
+	margin-bottom: 50px;
+	z-index: 5;
+	border: 10px #c0c0c0 ridge;
+	border-radius: 2px;
+	box-shadow: 3px 5px 35px rgba(0, 0, 0, 0.65);
+}
+
+#timer {
+	background: #000000;
+	z-index: 5;
+	border: 10px #c0c0c0 ridge;
+	border-radius: 2px;
+	box-shadow: 3px 5px 35px rgba(0, 0, 0, 0.65);
+}
+
+#blackScreen {
+	z-index: 6;
+}
+
+#editQuestionsDiv {
+	border-radius: 2px;
+	z-index: 7;
 }
 
 #answers {
 	font-family: monospace; 
-	padding-top: 55px; 
+	padding-top: 58px; 
 	padding-left: 18px; 
 	font-size: 1.5em;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.answer {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 #displayQuestions {
 	position:absolute; 
-	top:15px; 
-	left:15px;
+	top:10px; 
+	left:20px;
+	width: 970px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
