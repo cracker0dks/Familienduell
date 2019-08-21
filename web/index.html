@@ -16,19 +16,22 @@
 	</head>
 	<body style="padding:10px;">
 		<div id="allContent">
+			<!-- Select between display and controller -->
 			<div id="startDiv" style="width: 500px; margin: auto;">
 				<h1 style="font-size: 5em;">Familienduell</h1>
 				<button id="displayBtn" style="font-size: 2em; width:500px;"><i class="fa fa-desktop"></i> DISPLAY</button><br>
 				<button id="controllerBtn" style="font-size: 2em; width:500px; margin-top:2px;"><i class="fa fa-keyboard-o"></i> CONTROLLER</button>
-		    </div>
-		    <div class="bgColor textColor mainHeight" style="display:none" id="display">
-		    	<img id="schweinchenImg" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen.jpg">
-				<img id="schweinchen1Img" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen1.jpg">
-				<img id="schweinchen2Img" style="margin-left: 200px; margin-top: 70px; display: none;" src="./img/schweinchen2.jpg">
-		    	<div id="displayQuestions" class="textColor">
-		    	</div>
+			</div>
+			<!-- container with all questions, answers, pigs, countdown, intro image, points-->
+		    <div class="topContainer bgColor textColor mainHeight" style="display:none" id="display">
+				<img id="schweinchen1Img" style="height: 75%; top: 12.5%; position: absolute; left:0; right:0; margin-left: auto; margin-right: auto; display: none; overflow: hidden;" src="./img/schweinchen1.png">
+				<img id="schweinchen2Img" style="height: 75%; top: 12.5%; position: absolute; left:0; right:0; margin-left: auto; margin-right: auto; display: none;" src="./img/schweinchen2.png">
+				<img id="schweinchen3Img" style="height: 75%; top: 12.5%; position: absolute; left:0; right:0; margin-left: auto; margin-right: auto; display: none;" src="./img/schweinchen3.png">
+				<!-- question text is injected in `loadQuestionToGui(index:)` (server.js) -->
+				<div id="displayQuestions" class="textColor">
+				</div>
+				<!-- answer divs are injected in `loadQuestionToGui(index:)` (server.js) -->
 		    	<div id="answers">
-		    		
 		    	</div>
 		    	<div id="result" style="position:absolute; bottom:65px; right:38px; font-size: 1.5em;">
 		    		<div style="float:left; padding-right: 20px;" class="header_summe">SUMME</div>
@@ -53,7 +56,8 @@
 		    	<div class="xmarker noIntro" style="position: absolute; bottom: -64px; left: 34px" ></div>
 		    	<div class="xmarker noIntro" style="position: absolute; bottom: -64px; right: 34px" ></div>
 		    	<img style="position: absolute; top: 0px;" class="intro" src="./img/logo.png">
-		    </div>
+			</div>
+			<!-- controller container -->
 			<div style="display:none;" class="controller">
 				<div id="buttonsDownUnder">
 					<table border="1">
