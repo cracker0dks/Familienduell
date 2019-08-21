@@ -300,15 +300,17 @@ function stopTimer() {
 
 function startSchweinchen() {
 	if (runde == 2){
-        $("#schweinchen2Img").fadeIn();
+        $("#schweinchen2Img").show("blind", { direction: "left" }, 1500);
 	} else if (runde == 3){
-        $("#schweinchenImg").fadeIn();
+        $("#schweinchen3Img").show("blind", { direction: "left" }, 1500);
 	} else {
-        $("#schweinchen1Img").fadeIn();
+		$("#schweinchen1Img").show("blind", { direction: "left" }, 1500);
 	}
 
 	$("#answers").hide();
 	$("#displayQuestions").hide();
+	$("#result").hide();
+	$(".footer").hide();
 	
 	if(sounds && (display || serverSound)) {
 		schweinchen = new Audio('./sounds/schweinchen.ogg');
@@ -322,11 +324,11 @@ function stopSchweinchen() {
 	$("#questionsSelect").val(index+1);
 	changeFrage();
 
-	$("#schweinchenImg").hide();
+	$("#schweinchen3Img").hide();
     $("#schweinchen1Img").hide();
     $("#schweinchen2Img").hide();
-	$("#answers").show();
-	$("#displayQuestions").show();
+	$("#result").show();
+	$(".footer").show("blind", { direction: "left" }, 1500);
 	if(schweinchen) {
 		schweinchen.pause();
 	}
@@ -375,7 +377,8 @@ function changeFrage() {
 }
 
 function loadQuestionToGui(index) {
-	$("#schweinchenImg").hide();
+	console.log('oh noooo we are here');
+	$("#schweinchen3Img").hide();
     $("#schweinchen1Img").hide();
     $("#schweinchen2Img").hide();
 	$("#answers").empty();
@@ -397,7 +400,7 @@ function loadQuestionToGui(index) {
 		if (isFinalMode){
             $("#displayQuestions").hide();
 		} else {
-            $("#displayQuestions").show();
+			$("#displayQuestions").show("blind", { direction: "left" }, 1500);
 		}
 		var anzahlFragen = fragen[index]["antworten"].length;
 		if (isFinalMode) {
@@ -459,7 +462,8 @@ function loadQuestionToGui(index) {
 		}
 	}
 	if (!isFinalMode) {
-        $("#SumRes").text("0");
+		$("#SumRes").text("0");
+		$("#answers").show("blind", { direction: "left" }, 1500);
     }
     if(!display)
     	$("#resultFinal").hide();
