@@ -324,9 +324,9 @@ function stopSchweinchen() {
 	$("#questionsSelect").val(index+1);
 	changeFrage();
 
-	$("#schweinchen3Img").hide();
-    $("#schweinchen1Img").hide();
-    $("#schweinchen2Img").hide();
+	$("#schweinchen3Img").stop(true, true).hide();
+    $("#schweinchen1Img").stop(true, true).hide();
+    $("#schweinchen2Img").stop(true, true).hide();
 	$("#result").show();
 	$(".footer").show("blind", { direction: "left" }, 1500);
 	if(schweinchen) {
