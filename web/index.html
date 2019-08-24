@@ -28,10 +28,10 @@
 				<img id="schweinchen2Img" style="height: 75%; top: 12.5%; position: absolute; left:0; right:0; margin-left: auto; margin-right: auto; display: none;" src="./img/schweinchen2.png">
 				<img id="schweinchen3Img" style="height: 75%; top: 12.5%; position: absolute; left:0; right:0; margin-left: auto; margin-right: auto; display: none;" src="./img/schweinchen3.png">
 				<!-- question text is injected in `loadQuestionToGui(index:)` (server.js) -->
-				<div id="displayQuestions" class="textColor">
+				<div id="displayQuestions" class="textColor questionAnswerContainer">
 				</div>
 				<!-- answer divs are injected in `loadQuestionToGui(index:)` (server.js) -->
-		    	<div id="answers">
+		    	<div id="answers" class="questionAnswerContainer">
 		    	</div>
 		    	<div id="result" style="position:absolute; bottom:65px; right:38px; font-size: 1.5em;">
 		    		<div style="float:left; padding-right: 20px;" class="header_summe">SUMME</div>
@@ -44,7 +44,7 @@
 					<div class="noIntro" style="width:80px; float: left; text-align:right;" id="SumRes_player1"></div>
 					<div class="noIntro" style="width:80px; float: left; text-align:right;" id="SumRes_player2"></div>
 				</div>
-				<div id="timer" style="position:absolute; top: 65px; left: 50%; width: 400px; margin-left: -200px; text-align: center; padding: 0px 30px 10px 30px; font-size: 200px; display: none;">
+				<div id="timer" style="position:absolute; top: 50%; left: 50%; width: 400px; margin-left: -200px; margin-top: -143px; text-align: center; padding: 0px 30px 10px 30px; font-size: 200px; display: none;">
 					20
 				</div>
 		    	<div class="noIntro footer" id="footer1" style="position:absolute; bottom:0px; width:100%; height:50px; font-size: 2em;">
@@ -55,23 +55,23 @@
 		    	<!--<div class="noIntro footer" id="footer2" style="position:absolute; bottom:108px; width:100%; height:5px;"></div>-->
 		    	<div class="xmarker noIntro" style="position: absolute; bottom: -64px; left: 34px" ></div>
 		    	<div class="xmarker noIntro" style="position: absolute; bottom: -64px; right: 34px" ></div>
-		    	<img style="position: absolute; top: 0px;" class="intro" src="./img/logo.png">
+		    	<img style="position: absolute; top: 0px; width: 100%; height: 100%;" class="intro" src="./img/logo.png">
 			</div>
 			<!-- controller container -->
 			<div style="display:none;" class="controller">
 				<div id="buttonsDownUnder">
 					<table border="1">
 						<tr>
-							<td><b>Global</b></td>
-							<td><b>Server</b></td>
+							<!-- <td><b>Global</b></td>
+							<td><b>Server</b></td> -->
 							<td><b>Intro</b></td>
 							<td><b>Schweinchen</b></td>
 							<td><b>Optionen</b></td>
 							<td><b><label for="modeFinal">Finalmodus</b> </label><input id="modeFinal" type="checkbox" style="vertical-align: text-bottom" /> <button style="float:right;" id="finalmodusInfoBtn">Info</button></td>
 						</tr>
 						<tr>
-							<td><img id="toggleSoundImg" style="cursor:pointer;" width="35px;" src="./img/soundOn.png"></td>
-							<td><img id="serverSoundImg" style="cursor:pointer;" width="35px;" src="./img/noSound.png"></td>
+							<!-- <td><img id="toggleSoundImg" style="cursor:pointer;" width="35px;" src="./img/soundOn.png"></td>
+							<td><img id="serverSoundImg" style="cursor:pointer;" width="35px;" src="./img/soundOn.png"></td> -->
 							<td>
 								<button id="startIntroBtn"><i class="fa fa-play"></i> Intro!</button><br>
 								<button id="stopIntroBtn"><i class="fa fa-stop"></i> Intro!</button><br>

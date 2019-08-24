@@ -81,8 +81,10 @@ body {
 
 .mainHeight {
 	position: relative;
-	width: 1020px;
-	height: 520px;
+	width: 80vw;
+	height: 40vw;
+	min-height: 520px;
+	min-width: 1020px;
 	margin: auto;
 	margin-bottom: 50px;
 	z-index: 5;
@@ -109,26 +111,38 @@ body {
 }
 
 #answers {
-	font-family: monospace; 
-	padding-top: 58px; 
-	padding-left: 18px; 
-	font-size: 1.5em;
+	overflow: hidden;
+	font-family: monospace;  
+	font-size: 2.5vw;
 	white-space: nowrap;
-	text-overflow: ellipsis;
 }
 
 .answer {
 	overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis;
 }
 
 #displayQuestions {
-	position:absolute; 
-	top:10px; 
-	left:20px;
-	width: 970px;
 	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	font-size: 2.5vw;
+	white-space: unset;
+	text-overflow: unset;
+}
+
+.questionAnswerContainer {
+	padding-top: 20px; 
+	padding-left: 20px;
+	width: calc(100% - 40px);
+}
+
+@media (max-width: 1275px) { 
+	#answers {
+		font-size: 1.5em;
+	}
+
+	#displayQuestions {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size: 1.5em;
+	}
 }

@@ -409,31 +409,26 @@ function loadQuestionToGui(index) {
 		for (var i = 0; i < anzahlFragen; i++) {
 			if(isFinalMode || fragen[index]["antworten"][i]["antwort"] != "") {
                 if (isFinalMode) {
-				    var oneLine = $('<div style="height:55px">' +
-                        '<div style="width: 400px; float: left; text-align: right" class="answer"></div>' +
-                        '<div style="width: 40px; float: left; margin-left: 18px; margin-right: 20px; text-align: right" class="points"></div>' +
-                        '<div style="width: 40px; float: left; margin-left: 20px; margin-right: 22px; text-align: right" class="points_player2"></div>' +
-                        '<div style="width: 400px; float: left;" class="answer_player2"></div>' +
+				    var oneLine = $('<div>' +
+                        '<div style="width: 44%; float: left; text-align: center" class="answer"></div>' +
+                        '<div style="width: 6%; float: left; text-align: center" class="points"></div>' +
+                        '<div style="width: 6%; float: left; text-align: center" class="points_player2"></div>' +
+                        '<div style="width: 44%; float: left; text-align: center" class="answer_player2"></div>' +
                         '</div>');
                 } else {
-                    var oneLine = $('<div style="height:55px">' +
-                        '<div style="margin-left: 18px; width: 50px; float: left;" class="nr">' + (i + 1) + '.</div>' +
-                        '<div style="width: 824px; float: left" class="answer"></div>' +
-                        '<div style="width: 52px; float: left; text-align: right" class="points"></div>' +
+					var oneLine = $('<div>' +
+                        '<div style="width: 5%; text-align: center; float: left;" class="nr">' + (i + 1) + '.</div>' +
+                        '<div style="width: 89%; text-align: center; float: left" class="answer"></div>' +
+                        '<div style="width: 6%; float: left; text-align: right" class="points"></div>' +
                         '</div>');
                 }
 	    		if(display && !player2) {
-                    if (isFinalMode) {
-                        // oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _");
-                        oneLine.find(".answer").text(".....................");
-                    } else {
-                        // oneLine.find(".answer").text("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
-                        oneLine.find(".answer").text("...............................................");
-					}
-	    			oneLine.find(".points").text("--");
+					oneLine.find(".answer").text("..............................................................................................................");
+					oneLine.find(".points").text("--");
+					
 	    			if (isFinalMode){
 	    				oneLine.find(".points_player2").text("--");
-	    				oneLine.find(".answer_player2").text(".....................");
+	    				oneLine.find(".answer_player2").text("..............................................................................................................");
 	    				// oneLine.find(".answer_player2").text("_ _ _ _ _ _ _ _ _ _ _");
 	    			}
 	    		} else if (!display) {

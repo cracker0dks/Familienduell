@@ -8,7 +8,7 @@ var sounds = true;
 var ws;
 var display = true;
 var audio = null;
-var serverSound = false;
+var serverSound = true;
 var isFinalMode = false;
 var player2 = false;
 var runde = 1;
@@ -40,6 +40,13 @@ $(document).ready(function() {
 		$("#display").show();
 		$(".controller").show();
 		display = false;
+
+		// nice css manipulation 🤢#hack
+		$(".mainHeight").css("width", 1020);
+		$(".mainHeight").css("height", 520);
+		$(".mainHeight").css("padding-top", "");
+		$("#answers").css("font-size", "1.5em");
+		$("#displayQuestions").css("font-size", "1.5em");
 	});
 
 	$("#clearAllFailsBtn").click(function() {
