@@ -108,12 +108,15 @@ $(document).ready(function() {
 			var questionSelected = $("#finalFragenSelect").val();
 			questionSelected--;
 			if (questionSelected < 0) {
-				$("#finalFragenSelect").val(4);
+				// $("#finalFragenSelect").val(0);
 			} else {
 				$("#finalFragenSelect").val(questionSelected)
 			}
 		} 
-		setFrageIndex(index);
+
+		if (index > 0) {
+			setFrageIndex(index);
+		}
 	});
 
 	$("#downQicon").click(function() {
@@ -123,12 +126,15 @@ $(document).ready(function() {
 			var questionSelected = $("#finalFragenSelect").val();
 			questionSelected++;
 			if (questionSelected > 4) {
-				$("#finalFragenSelect").val(0);
+				// $("#finalFragenSelect").val(0);
 			} else {
 				$("#finalFragenSelect").val(questionSelected)
 			}
 		} 
-		setFrageIndex(index);
+
+		if (index < 8) {
+			setFrageIndex(index);	
+		}
 	});
 
 	$("#questionsSelect").on("change", function() {
@@ -198,7 +204,24 @@ function setFinalMode(status){
 	var index = $("#questionsSelect>option:selected").index();
 	index = index > 0 ? index : 0;
 	$("#answers").empty();
+
+	// automatically select first of the final questions (index 3)
+	if (isFinalMode < 3) {
+		index = 3;
+	}
+
 	loadQuestionToGui(index);
+
+	// manually select option once final mode starts
+	if (isFinalMode) {
+		if (index >= 0 && index < $("#questionsSelect").find("option").length) {
+			$("#questionsSelect").find("option").removeAttr("selected");
+			$($("#questionsSelect").find("option")[index]).prop("selected", "true");
+		}
+		if ($("#questionsSelect>option:selected").index() == -1 && $("#questionsSelect").find("option")[0]) {
+			$($("#questionsSelect").find("option")[0]).prop("selected", "true");
+		}
+	}
 }
 
 function setPlayer2(value){
