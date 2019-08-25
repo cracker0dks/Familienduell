@@ -434,7 +434,7 @@ function loadQuestionToGui(index) {
 
 	if(index > -1) {
         $("#displayQuestions").html(fragen[index]["frage"]);
-		if (isFinalMode){
+		if (isFinalMode && display){
             $("#displayQuestions").hide();
 		} else {
 			$("#displayQuestions").show("blind", { direction: "left" }, 1500);
