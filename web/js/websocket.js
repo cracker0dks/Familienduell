@@ -159,6 +159,8 @@ var connectWs = function() {
 			setLeftPoints(value);
 		} else if(key == "setRightPoints") {
 			setRightPoints(value);
+		} else if(key == "setSumRes") {
+			setSumRes(value);	
 		} else if(key == "startAnswerFail") {
 			startAnswerFail();
 		} else if(key == "startAnswerDuplicate") {

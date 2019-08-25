@@ -168,6 +168,10 @@ $(document).ready(function() {
 		wsSend("setRightPoints", $("#mPunkteRight").val());
 	});
 
+	$("#newSumRes").click(function() {
+		wsSend("setSumRes", $("#mPunkteSum").val());
+	});
+
 	$("#alternateAnswerBtn").click(function(){
 		var is = $("#finalFragenSelect").val();
 		var answer = $("#alternateAnswer").val();
@@ -232,6 +236,12 @@ function setRightPoints(newPoints) {
 		audio = new Audio('./sounds/zahlRichtig.ogg');
 		audio.play();
 	}
+}
+
+function setSumRes(newSumRes) {
+	$('#SumRes').text(newSumRes);
+	$("#mPunkteSum").val(newSumRes);
+	recalcSum(0);
 }
 
 function startAnswerFail() {
@@ -377,7 +387,6 @@ function changeFrage() {
 }
 
 function loadQuestionToGui(index) {
-	console.log('oh noooo we are here');
 	$("#schweinchen3Img").hide();
     $("#schweinchen1Img").hide();
     $("#schweinchen2Img").hide();
@@ -389,7 +398,8 @@ function loadQuestionToGui(index) {
     $("#ResSum_player1").toggle(isFinalMode);
     $("#ResSum_player2").toggle(isFinalMode);
     if (isFinalMode){
-        $("#resultFinal").show();
+		$("#resultFinal").show();
+		$(".footer").hide();
 	} else {
     	$("#resultFinal").hide();
 	}
@@ -547,15 +557,8 @@ function recalcSum(s) {
 
 function getAnswerString(str) {
 	if (isFinalMode){
-		while(str.length < 21) {
-		    if (player2){
-				str += " ";
-			} else {
-				str = " " + str;
-			}
-		}
-		if (player2){ 
-			str = str.replace(/ /g, "&nbsp;");
+		while(str.length < 24) {
+			str = " " + str;
 		}
 	} else {
 		str += " ";

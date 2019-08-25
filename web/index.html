@@ -7,7 +7,6 @@
 	<script type="text/javascript" src="./js/typed.js"></script>
 	<script type="text/javascript" src="./js/main.js"></script>
 	<script type="text/javascript" src="./js/components.js"></script>
-
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
@@ -39,10 +38,11 @@
 		    		<div class="noIntro" style="width:50px; float: left; text-align:right;" id="SumRes">0</div>
 		    		<div style="float:left; font-size: 0.8em; position: relative; top: 12; color: red; cursor:pointer;" class="controller" id="pointsToTheRight"><i class="fa fa-chevron-right"></i></div>
 		    	</div>
-				<div id="resultFinal" style="position:absolute; bottom:95px; right:444px; font-size: 1.5em; display: none;">
-					<div style="float:left" class="header_summe">SUMME</div>
-					<div class="noIntro" style="width:80px; float: left; text-align:right;" id="SumRes_player1"></div>
-					<div class="noIntro" style="width:80px; float: left; text-align:right;" id="SumRes_player2"></div>
+				<div id="resultFinal" style="position:absolute; bottom:95px; width:100%; font-size: 1.5em; display: none;">
+					<div style="display: flex;justify-content: center;">
+						<div class="noIntro" style="width:6%; float: left; text-align:center;" id="SumRes_player1"></div>
+						<div class="noIntro" style="width:6%; float: right; text-align:center;" id="SumRes_player2"></div>
+					</div>
 				</div>
 				<div id="timer" style="position:absolute; top: 50%; left: 50%; width: 400px; margin-left: -200px; margin-top: -143px; text-align: center; padding: 0px 30px 10px 30px; font-size: 200px; display: none;">
 					20
@@ -91,7 +91,6 @@
 								<img width="20px;" src="./img/soundOn.png">
 							</td>
 							<td>
-								<button id="startAnswerFailBtn"><i class="fa fa-play"></i> Antwort nicht vorhanden</button><br>
 								<button id="clearAllFailsBtn">Clear all Fails!</button><br><br>
 								<table>
 									<tr>
@@ -99,6 +98,9 @@
 									</tr>
 									<tr>
 										<td>Punkte Rechts: </td> <td><input style="width:50px;" id="mPunkteRight" type="number" value="0"></td><td><button id="newRightPoints">ok</button></td>
+									</tr>
+									<tr>
+										<td>Punkte Summe: </td> <td><input style="width:50px;" id="mPunkteSum" type="number" value="0"></td><td><button id="newSumRes">ok</button></td>
 									</tr>
 								</table>
 							</td>
