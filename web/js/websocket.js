@@ -53,6 +53,10 @@ $(document).ready(function() {
 		wsSend("clearAllFailsBtn", "");
 	});
 
+	$("#showFinalScores").click(function() {
+		wsSend("showFinalScores", "");
+	});
+
 	$("#toggleSoundImg").click(function() {
 		wsSend("toggleSound", "");
 	});
@@ -129,6 +133,8 @@ var connectWs = function() {
 				$("#toggleSoundImg").attr("src", "./img/soundOn.png");
 				sounds = true;
 			}
+		} else if(key == "showFinalScores") {
+			showFinalScores()
 		} else if(key == "file") {
 			if(value == "fragen.txt") {
 				try {

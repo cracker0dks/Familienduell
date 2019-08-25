@@ -5,6 +5,9 @@ var answerFail = null;
 var schweinchenVolume = 1;
 var answerFailVolume = 1;
 var schweinchen = null;
+// when the points for a round are assigned, we still want to show the other answers but no points should be calculated by that time
+// reset when changing a question
+var currentRoundPointsResolved = false;
 
 $(document).ready(function() {
 	$( "#fragenListe" ).sortable();
@@ -384,6 +387,7 @@ function changeFrage() {
 	var index = $("#questionsSelect>option:selected").index();
 	wsSend("loadQuestion", index);
 	wsSend("clearAllFailsBtn", "");
+	wsSend("resetPointsResolvedFlag", "false");
 }
 
 function loadQuestionToGui(index) {
@@ -553,6 +557,26 @@ function recalcSum(s) {
     	$(sum_selector).text(parseFloat($(sum_selector).text())+parseFloat(s));
     	$("#pointsCenter").text(parseFloat($(sum_selector).text())*runde);
     }
+}
+
+// Add the scores from the final rounds to the current scores from previous rounds
+function showFinalScores() {
+	$("#answers").hide();
+	$("#displayQuestions").hide();
+	$("#result").hide();
+	$("#resultFinal").hide();
+	$("#pointsCenter").hide();
+	$(".pointsLeft").show();
+	$(".pointsRight").show();
+
+	const leftFinalScore = parseFloat($("#SumRes_player1").text());
+	const rightFinalScore = parseFloat($("#SumRes_player2").text());
+
+	$(".pointsLeft").text(parseFloat($(".pointsLeft").text()) + leftFinalScore);
+	$(".pointsRight").text(parseFloat($(".pointsRight").text()) + rightFinalScore);
+
+	// show final scores with blinds
+	$(".footer").show("blind", { direction: "left" }, 1500);
 }
 
 function getAnswerString(str) {

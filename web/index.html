@@ -40,8 +40,8 @@
 		    	</div>
 				<div id="resultFinal" style="position:absolute; bottom:95px; width:100%; font-size: 1.5em; display: none;">
 					<div style="display: flex;justify-content: center;">
-						<div class="noIntro" style="width:6%; float: left; text-align:center;" id="SumRes_player1"></div>
-						<div class="noIntro" style="width:6%; float: right; text-align:center;" id="SumRes_player2"></div>
+						<div class="noIntro" style="width:6%; float: left; text-align:center;" id="SumRes_player1">10</div>
+						<div class="noIntro" style="width:6%; float: right; text-align:center;" id="SumRes_player2">20</div>
 					</div>
 				</div>
 				<div id="timer" style="position:absolute; top: 50%; left: 50%; width: 400px; margin-left: -200px; margin-top: -143px; text-align: center; padding: 0px 30px 10px 30px; font-size: 200px; display: none;">
@@ -68,6 +68,7 @@
 							<td><b>Schweinchen</b></td>
 							<td><b>Optionen</b></td>
 							<td><b><label for="modeFinal">Finalmodus</b> </label><input id="modeFinal" type="checkbox" style="vertical-align: text-bottom" /> <button style="float:right;" id="finalmodusInfoBtn">Info</button></td>
+							<td><b>Spielende</b></td>
 						</tr>
 						<tr>
 							<!-- <td><img id="toggleSoundImg" style="cursor:pointer;" width="35px;" src="./img/soundOn.png"></td>
@@ -105,10 +106,10 @@
 								</table>
 							</td>
 							<td>
-								<button id="startAnswerDuplicateBtn"><i class="fa fa-play"></i> Antwort doppelt</button><br>
+								<!-- <button id="startAnswerDuplicateBtn"><i class="fa fa-play"></i> Antwort doppelt</button><br>
 								<img width="20px;" src="./img/noSound.png"> 
 								<input id="answerFailVolume" style="width: 50px;" type="range" value="10" name="points" min="0" max="10"> 
-								<img width="20px;" src="./img/soundOn.png">
+								<img width="20px;" src="./img/soundOn.png"> -->
 								<div>
 									<label for="spieler1">Spieler 1:</label> <input class="playerTgl finalElement" disabled="true" checked="true" type="radio" value="1" name="fmod" id="spieler1" style="vertical-align: text-bottom" /> <button id="showTimerBtn" disabled="true" class="finalElement">Timer anzeigen</button><br>
 									<label for="spieler2">Spieler 2:</label> <input class="playerTgl finalElement" disabled="true" type="radio" value="2" name="fmod" id="spieler2" style="vertical-align: text-bottom" /> <button id="startTimerBtn" disabled="true" class="finalElement"><i class="fa fa-play"></i> Timer starten</button><br>
@@ -121,6 +122,9 @@
 									</select> <button id="stopTimerBtn" disabled="true" class="finalElement"><i class="fa fa-stop"></i> Timer stoppen</button><br>
 									Alternative Antwort:<br> <input class="finalElement" id="alternateAnswer" maxlength="20" disabled="true" type="text" name=""><button class="finalElement" id="alternateAnswerBtn" disabled="true">setzen</button><br><input type="number" class="finalElement" id="altPointsFinal" disabled="true" placeholder="Alt. Punkte" value=""><button class="finalElement" id="alternateAnswerPBtn" disabled="true">setzen</button>
 								</div>
+							</td>
+							<td>
+								<button id="showFinalScores">Show Final Scores</button><br><br>
 							</td>
 						</tr>
 					</table>
