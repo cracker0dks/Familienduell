@@ -70,3 +70,4 @@ Danke auch an:
  * [flbe](https://github.com/flbe) für den Python Server
  * [susgo](https://github.com/susgo) für den Finalmodus
  * [ConvalAtGit](https://github.com/ConvalAtGit) für viele Verbesserungen, Redesign und zusätzliche Word und Excel Dokumente
+ * [fruitcoder](https://github.com/fruitcoder/) Design verbesserungen
