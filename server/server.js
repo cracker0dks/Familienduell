@@ -49,7 +49,7 @@ wss.on('connection', function(ws) {
 	console.log("~~~~~~~~ WELCOME TO SERVER ~~~~~~ s:"+subscribers.length);
     ws.on('message', function(message) {
     	console.log('msg: ' + message);
-    	var parts = message.split("###");
+    	var parts = message.toString().split("###");
     	if(parts[0] != "fileOp") {
 	    	broadcastMessage(getClientId(), message);
 	    } else {
