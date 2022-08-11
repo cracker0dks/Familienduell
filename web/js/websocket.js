@@ -105,8 +105,8 @@ var connectWs = function() {
 	}
 
 	ws.onmessage = function (event) {
-		console.log("msg: "+event.data)
-		messageParts_a = event.data.split("###");
+		console.log("msg: "+event.data.toString())
+		messageParts_a = event.data.toString().split("###");
 		var key = messageParts_a[0];
 		var value = messageParts_a[1];
 		if(key =="setFail") {
