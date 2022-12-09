@@ -89,7 +89,7 @@ wss.on('connection', function(ws) {
 });
 
 function broadcastMessage(clientId, msg) {
-	console.log("broadcast:"+msg.split("###")[0]+" length:"+subscribers.length);
+	console.log("broadcast:", msg.toString().split("###")[0], "length:", subscribers.length);
 	for(var i=0;i<subscribers.length;i++) {
 		if(subscribers[i] != null)
 			subscribers[i].send(msg);
