@@ -7,7 +7,6 @@ Familienduell Client / Server (NodeJs Javascript)
 ### -A- START DES SERVERS!
 
 ___Windows___
-
 1. Im Ordner "server" die Datei StartServer.bat doppelklicken.
    * Im Fenster das jetzt erscheint sollte: "SERVER IS UP AND RUNNING" stehen.
    * Falls die Firewall fragt, solltest du die Anfrage zulassen da sonst der Client nicht verbinden kann.
@@ -43,6 +42,9 @@ ___Mac___
 Q: Warum ist das Display zu Beginn schwarz, und wie kann ich das ändern?   
 A: Das Bild ist schwarz damit man die Intromusik starten kann und die Leute (Zuschauer) nicht schon vorher wissen was auf sie zukommt.
    Dies kann (Im Controller) über die Checkbox "Blackscreen", im Bereich "Intro" kontrolliert werden.
+
+Q: Warum bekomm ich die Fehlermeldung "node.exe wurde falsch geschrieben oder konnte nicht gefunden werden"?<br>
+A: Die heruntergeladene zip Datei muss zunächst entpack werden. Rechtsklick auf die Datei -> Alles etpacken.
 
 Q: Wie funktioniert das mit 2 oder mehr Geräten?   
 A: Alle Geräte müssen im gleichen Netzwerk sein. Dann verwende einfach eine Externe IP des Servers (aus dem Serverfenster) zum verbinden von einem anderen Gerät aus.
