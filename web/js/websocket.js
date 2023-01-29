@@ -105,12 +105,11 @@ var connectWs = function() {
 	}
 
 	ws.onmessage = async function (event) {
-		console.log("msg: "+event.data.toString())
 		let tempSt = event.data.toString();
-		if(typeof(tempSt) != "string") {
-			tempSt = await new Response(tempSt).text()
+		if(typeof(event.data) != "string") {
+			tempSt = await new Response(event.data).text()
 		}
-		
+		console.log("msg: "+tempSt)
 		messageParts_a = tempSt.split("###");
 		var key = messageParts_a[0];
 		var value = messageParts_a[1];
