@@ -104,9 +104,14 @@ var connectWs = function() {
 		return null;
 	}
 
-	ws.onmessage = function (event) {
+	ws.onmessage = async function (event) {
 		console.log("msg: "+event.data.toString())
-		messageParts_a = event.data.toString().split("###");
+		let tempSt = event.data.toString();
+		if(typeof(tempSt) != "string") {
+			tempSt = await new Response(tempSt).text()
+		}
+		
+		messageParts_a = tempSt.split("###");
 		var key = messageParts_a[0];
 		var value = messageParts_a[1];
 		if(key =="setFail") {
